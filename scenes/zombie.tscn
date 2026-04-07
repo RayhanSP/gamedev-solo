@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ci3ycmj402dn8"]
+
+[ext_resource type="Script" uid="uid://dox1btjuvynxv" path="res://scripts/zombie.gd" id="1_4gx57"]
+[ext_resource type="Texture2D" uid="uid://dbrur8emo2mjv" path="res://assets/sprites/zombieHurt.png" id="2_ycv6i"]
+[ext_resource type="Texture2D" uid="uid://bh7b0hwsnol7t" path="res://assets/sprites/zombieMarch1.png" id="3_pjjxt"]
+[ext_resource type="Texture2D" uid="uid://uh72sn3skt0d" path="res://assets/sprites/zombieMarch2.png" id="4_7pfmu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fthk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ycv6i")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pjjxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7pfmu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aetfh"]
+radius = 13.0
+
+[node name="Zombie" type="CharacterBody2D" unique_id=1707422033]
+scale = Vector2(2, 2)
+script = ExtResource("1_4gx57")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756556107]
+sprite_frames = SubResource("SpriteFrames_3fthk")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1999441093]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_aetfh")
