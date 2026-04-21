@@ -1,21 +1,127 @@
 [gd_scene format=3 uid="uid://dmhnrvtxvbh2s"]
 
+[ext_resource type="Script" uid="uid://dym880caj4vyv" path="res://scripts/time_manager.gd" id="1_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bj1wbjyihw8y8" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://63d2rvpihu5i" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/1.png" id="1_o6xl0"]
 [ext_resource type="Script" uid="uid://dx3r5wa5sm0l8" path="res://scripts/player.gd" id="2_sugp2"]
+[ext_resource type="Texture2D" uid="uid://byfbdlvbhpvsa" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/2.png" id="2_tipki"]
+[ext_resource type="Texture2D" uid="uid://5j762164a1pf" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/3.png" id="3_85g3d"]
 [ext_resource type="PackedScene" uid="uid://ctv2v3hwntkhj" path="res://scenes/item_busi.tscn" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://cdhb0xc3ltnyd" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/1.png" id="4_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://ci3ycmj402dn8" path="res://scenes/zombie.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://b2sjvyy5hnnyx" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/2.png" id="5_muem4"]
+[ext_resource type="Texture2D" uid="uid://cqvcxc1kasvwh" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/3.png" id="6_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://bfxglc767uavn" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/1.png" id="7_0ld40"]
+[ext_resource type="Texture2D" uid="uid://b0b7lye4c1743" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/2.png" id="8_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://dtniftqrripqt" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/1.png" id="8_yc10j"]
+[ext_resource type="Texture2D" uid="uid://dsyfrgyyhkhiv" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/2.png" id="9_jscy8"]
+[ext_resource type="Texture2D" uid="uid://cucald44p422d" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/3.png" id="9_yc10j"]
+[ext_resource type="Texture2D" uid="uid://lfgwv6k1d2xq" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/4.png" id="10_jscy8"]
+[ext_resource type="Texture2D" uid="uid://7bbarwmvuft5" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/5.png" id="11_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://cyy3gt7nr7nns" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/6.png" id="12_y6deb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 
 [node name="Main" type="Node2D" unique_id=159988853]
 
-[node name="Ground" type="StaticBody2D" parent="." unique_id=1037466701]
-position = Vector2(320.415, 324.24)
-scale = Vector2(6.45, 1)
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=822555748]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=83386468]
-scale = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_sgp6g")
+[node name="TimeManager" type="Node" parent="." unique_id=975729073]
+script = ExtResource("1_0ld40")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2146964310]
+
+[node name="LayerDay" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1710153474]
+
+[node name="BgSiang" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=198315687]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("1_o6xl0")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=1843004683]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("2_tipki")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=945745339]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("3_85g3d")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="LayerEvening" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1936488536]
+
+[node name="BgSore" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=1804722912]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("4_jbj1t")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=1704539959]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("5_muem4")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=2142560607]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("6_dp3eg")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="LayerNight" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1283088048]
+
+[node name="BgMalam" type="Sprite2D" parent="ParallaxBackground/LayerNight" unique_id=101186641]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("8_yc10j")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerNight" unique_id=1779624861]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("9_jscy8")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="LayerMidnight" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2042865073]
+
+[node name="BgTengahMalam" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1133851681]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("7_0ld40")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="Bulan" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1997252922]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("8_gqmmt")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepanBulan" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1121901542]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("9_yc10j")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1222012055]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("10_jscy8")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang2" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=292649417]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("11_pm3ni")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1116775835]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("12_y6deb")
+centered = false
+offset = Vector2(0, -60)
 
 [node name="Player" parent="." unique_id=1612350967 instance=ExtResource("1_o5qli")]
 position = Vector2(146, 110)
@@ -25,3 +131,11 @@ projectile_scene = ExtResource("3_jyhfs")
 
 [node name="Zombie" parent="." unique_id=1707422033 instance=ExtResource("4_jyhfs")]
 position = Vector2(618, 242)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1037466701]
+position = Vector2(320.415, 324.24)
+scale = Vector2(6.45, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=83386468]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_sgp6g")
