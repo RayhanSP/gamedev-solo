@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://cxt0ibblim5iq"]
+
+[ext_resource type="Script" uid="uid://tqtj2h1wb8yq" path="res://scripts/vending_machine.gd" id="1_um5cl"]
+[ext_resource type="Texture2D" uid="uid://ecihtgk4t7h8" path="res://assets/sprites/vendingMachineSpitReward.png" id="2_q0fei"]
+[ext_resource type="Texture2D" uid="uid://dy7cmk0dqh0sk" path="res://assets/sprites/vendingMachineAnim6.png" id="3_a3lgy"]
+[ext_resource type="Texture2D" uid="uid://cof25fck26dmm" path="res://assets/sprites/vendingMachineBase.png" id="3_ruqul"]
+[ext_resource type="Texture2D" uid="uid://bpg8ywb7yo7ho" path="res://assets/sprites/vendingMachineAnim5.png" id="4_ruqul"]
+[ext_resource type="Texture2D" uid="uid://e1pge4agtpf6" path="res://assets/sprites/vendingMachineAnim4.png" id="5_t0d2s"]
+[ext_resource type="Texture2D" uid="uid://cycdgneoatmtm" path="res://assets/sprites/vendingMachineAnim3.png" id="6_m1vee"]
+[ext_resource type="Texture2D" uid="uid://chllqrvfdkdoc" path="res://assets/sprites/vendingMachineAnim2.png" id="7_s5cyj"]
+[ext_resource type="Texture2D" uid="uid://nblu8clellj3" path="res://assets/sprites/vendingMachineAnim1.png" id="8_bqfkx"]
+[ext_resource type="Texture2D" uid="uid://3heincou74ve" path="res://assets/sprites/vendingMachineSpinned.png" id="10_ruqul"]
+[ext_resource type="Texture2D" uid="uid://cithfnes4isrj" path="res://assets/sprites/vendingMachineAnimFinal.png" id="10_t0d2s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77dry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q0fei")
+}],
+"loop": false,
+"name": &"dispense",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ruqul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a3lgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ruqul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t0d2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m1vee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s5cyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bqfkx")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ruqul")
+}],
+"loop": false,
+"name": &"pull_handle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_t0d2s")
+}],
+"loop": false,
+"name": &"text_final",
+"speed": 3.0
+}]
+
+[node name="VendingMachine" type="Node2D" unique_id=1202862248]
+script = ExtResource("1_um5cl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1503941758]
+sprite_frames = SubResource("SpriteFrames_77dry")
+animation = &"pull_handle"
+
+[node name="Timer" type="Timer" parent="." unique_id=1193820832]
+
+[node name="UI_Gacha" type="CanvasLayer" parent="." unique_id=61629327]
+
+[node name="GachaButton" type="Button" parent="UI_Gacha" unique_id=1624177407]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -65.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "PULL"

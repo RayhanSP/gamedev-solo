@@ -19,8 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://lfgwv6k1d2xq" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/4.png" id="10_jscy8"]
 [ext_resource type="Texture2D" uid="uid://7bbarwmvuft5" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/5.png" id="11_pm3ni"]
 [ext_resource type="Texture2D" uid="uid://cyy3gt7nr7nns" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/6.png" id="12_y6deb"]
+[ext_resource type="Texture2D" uid="uid://bb62c42rb6tiv" path="res://assets/background/house_day.png" id="16_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://y4arpffl8mom" path="res://assets/background/house_evening.png" id="17_y6deb"]
+[ext_resource type="Texture2D" uid="uid://cca6gnyfnuobm" path="res://assets/background/house_night.png" id="18_og1vs"]
+[ext_resource type="Texture2D" uid="uid://c3hdhg2mnmhrt" path="res://assets/background/house_midnight.png" id="19_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://cxt0ibblim5iq" path="res://scenes/vending_machine.tscn" id="24_y6deb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
+size = Vector2(20, 17.552002)
 
 [node name="Main" type="Node2D" unique_id=159988853]
 
@@ -32,6 +38,7 @@ script = ExtResource("1_0ld40")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2146964310]
 
 [node name="LayerDay" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1710153474]
+z_index = -1
 
 [node name="BgSiang" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=198315687]
 scale = Vector2(1.111, 1.111)
@@ -52,6 +59,7 @@ centered = false
 offset = Vector2(0, -60)
 
 [node name="LayerEvening" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1936488536]
+z_index = -1
 
 [node name="BgSore" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=1804722912]
 scale = Vector2(1.111, 1.111)
@@ -72,6 +80,7 @@ centered = false
 offset = Vector2(0, -60)
 
 [node name="LayerNight" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1283088048]
+z_index = -1
 
 [node name="BgMalam" type="Sprite2D" parent="ParallaxBackground/LayerNight" unique_id=101186641]
 scale = Vector2(1.111, 1.111)
@@ -86,6 +95,7 @@ centered = false
 offset = Vector2(0, -60)
 
 [node name="LayerMidnight" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2042865073]
+z_index = -1
 
 [node name="BgTengahMalam" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1133851681]
 scale = Vector2(1.111, 1.111)
@@ -123,19 +133,46 @@ texture = ExtResource("12_y6deb")
 centered = false
 offset = Vector2(0, -60)
 
+[node name="HouseLayers" type="Node2D" parent="." unique_id=1618022668]
+z_index = 10
+
+[node name="HouseDay" type="Sprite2D" parent="HouseLayers" unique_id=300407247]
+texture = ExtResource("16_pm3ni")
+centered = false
+
+[node name="HouseEvening" type="Sprite2D" parent="HouseLayers" unique_id=571446800]
+texture = ExtResource("17_y6deb")
+centered = false
+
+[node name="HouseNight" type="Sprite2D" parent="HouseLayers" unique_id=568493092]
+texture = ExtResource("18_og1vs")
+centered = false
+
+[node name="HouseMidnight" type="Sprite2D" parent="HouseLayers" unique_id=165153308]
+texture = ExtResource("19_2wyq8")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1037466701]
+position = Vector2(320.415, 325.095)
+scale = Vector2(6.45, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=83386468]
+position = Vector2(0, -6.119995)
+scale = Vector2(5, 4.9999995)
+shape = SubResource("RectangleShape2D_sgp6g")
+
 [node name="Player" parent="." unique_id=1612350967 instance=ExtResource("1_o5qli")]
-position = Vector2(146, 110)
-scale = Vector2(2, 2)
+z_index = 20
+position = Vector2(118, 129)
+scale = Vector2(1.25, 1.25)
 script = ExtResource("2_sugp2")
 projectile_scene = ExtResource("3_jyhfs")
 
 [node name="Zombie" parent="." unique_id=1707422033 instance=ExtResource("4_jyhfs")]
-position = Vector2(618, 242)
+z_index = 20
+position = Vector2(606, 255)
+scale = Vector2(1.25, 1.25)
 
-[node name="Ground" type="StaticBody2D" parent="." unique_id=1037466701]
-position = Vector2(320.415, 324.24)
-scale = Vector2(6.45, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=83386468]
-scale = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_sgp6g")
+[node name="Node2D" parent="." unique_id=1202862248 instance=ExtResource("24_y6deb")]
+z_index = 20
+position = Vector2(57, 118)

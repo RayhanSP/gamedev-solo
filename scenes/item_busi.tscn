@@ -11,17 +11,14 @@ height = 16.0
 script = ExtResource("1_a7ygb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=669926535]
-scale = Vector2(2, 2)
 texture = ExtResource("1_6v2g1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1565800397]
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a7ygb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=403044974]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1879812061]
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a7ygb")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
