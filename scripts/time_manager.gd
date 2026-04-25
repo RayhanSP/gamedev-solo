@@ -18,12 +18,16 @@ extends Node
 	"midnight": $"../HouseLayers/HouseMidnight"
 }
 
+# Nilai 0.25 berarti warna aslinya cuma diambil 25%, sisanya 75% dicampur putih
+var tint_strength: float = 0.5 
+
+# Color.WHITE.lerp() akan mencampur warna putih dengan warna target lu
 var time_colors = {
-	"day": Color("#ffffff"),
-	"evening": Color("#ffb38a"),
-	"night": Color("#4a5b78"),
-	"dusk": Color("#ff9d8a"),
-	"midnight": Color("7f5150ff")
+	"day": Color("#ffffff"), # Siang hari tetep putih murni
+	"evening": Color.WHITE.lerp(Color("#ffb38a"), tint_strength),
+	"night": Color.WHITE.lerp(Color("#4a5b78"), tint_strength),
+	"dusk": Color.WHITE.lerp(Color("#ff9d8a"), tint_strength),
+	"midnight": Color.WHITE.lerp(Color("#38222b"), tint_strength) 
 }
 
 var cycle_sequence = ["day", "evening", "night", "dusk"]
