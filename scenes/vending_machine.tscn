@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://cxt0ibblim5iq"]
 
-[ext_resource type="Script" uid="uid://tqtj2h1wb8yq" path="res://scripts/vending_machine.gd" id="1_um5cl"]
-[ext_resource type="Texture2D" uid="uid://ecihtgk4t7h8" path="res://assets/sprites/vendingMachineSpitReward.png" id="2_q0fei"]
-[ext_resource type="Texture2D" uid="uid://dy7cmk0dqh0sk" path="res://assets/sprites/vendingMachineAnim6.png" id="3_a3lgy"]
-[ext_resource type="Texture2D" uid="uid://cof25fck26dmm" path="res://assets/sprites/vendingMachineBase.png" id="3_ruqul"]
-[ext_resource type="Texture2D" uid="uid://bpg8ywb7yo7ho" path="res://assets/sprites/vendingMachineAnim5.png" id="4_ruqul"]
-[ext_resource type="Texture2D" uid="uid://e1pge4agtpf6" path="res://assets/sprites/vendingMachineAnim4.png" id="5_t0d2s"]
-[ext_resource type="Texture2D" uid="uid://cycdgneoatmtm" path="res://assets/sprites/vendingMachineAnim3.png" id="6_m1vee"]
-[ext_resource type="Texture2D" uid="uid://chllqrvfdkdoc" path="res://assets/sprites/vendingMachineAnim2.png" id="7_s5cyj"]
-[ext_resource type="Texture2D" uid="uid://nblu8clellj3" path="res://assets/sprites/vendingMachineAnim1.png" id="8_bqfkx"]
-[ext_resource type="Texture2D" uid="uid://3heincou74ve" path="res://assets/sprites/vendingMachineSpinned.png" id="10_ruqul"]
-[ext_resource type="Texture2D" uid="uid://cithfnes4isrj" path="res://assets/sprites/vendingMachineAnimFinal.png" id="10_t0d2s"]
+[ext_resource type="Script" path="res://scripts/vending_machine.gd" id="1_um5cl"]
+[ext_resource type="Texture2D" uid="uid://dewd5wk3jwjt2" path="res://assets/vending_machine_sprites/vendingMachineSpitReward.png" id="2_ruqul"]
+[ext_resource type="Texture2D" uid="uid://c1cio3bhgwo5x" path="res://assets/vending_machine_sprites/vendingMachineAnim1.png" id="3_t0d2s"]
+[ext_resource type="Texture2D" uid="uid://baj7hpcrfcdge" path="res://assets/vending_machine_sprites/vendingMachineAnim2.png" id="4_m1vee"]
+[ext_resource type="Texture2D" uid="uid://cqhd2lk7bxgv0" path="res://assets/vending_machine_sprites/vendingMachineAnim3.png" id="5_s5cyj"]
+[ext_resource type="Texture2D" uid="uid://bm8dlbgowimw4" path="res://assets/vending_machine_sprites/vendingMachineAnim4.png" id="6_bqfkx"]
+[ext_resource type="Texture2D" uid="uid://ce4p3sy8xltju" path="res://assets/vending_machine_sprites/vendingMachineAnim5.png" id="7_77dry"]
+[ext_resource type="Texture2D" uid="uid://n8hlcnkusu50" path="res://assets/vending_machine_sprites/vendingMachineAnim6.png" id="8_eglwp"]
+[ext_resource type="Texture2D" uid="uid://0kpx5v6yjxit" path="res://assets/vending_machine_sprites/vendingMachineAnim7.png" id="9_43xwo"]
+[ext_resource type="Texture2D" uid="uid://cl78m30fnjjbk" path="res://assets/vending_machine_sprites/vendingMachineSpinned.png" id="10_6dx7k"]
+[ext_resource type="Texture2D" uid="uid://be33ug1nb65ys" path="res://assets/vending_machine_sprites/vendingMachineAnimFinal.png" id="11_bf3ui"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_77dry"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_q0fei")
+"texture": ExtResource("2_ruqul")
 }],
 "loop": false,
 "name": &"dispense",
@@ -24,25 +24,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ruqul")
+"texture": ExtResource("3_t0d2s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_a3lgy")
+"texture": ExtResource("4_m1vee")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ruqul")
+"texture": ExtResource("5_s5cyj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_t0d2s")
+"texture": ExtResource("6_bqfkx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_m1vee")
+"texture": ExtResource("7_77dry")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_s5cyj")
+"texture": ExtResource("8_eglwp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_bqfkx")
+"texture": ExtResource("9_43xwo")
 }],
 "loop": false,
 "name": &"idle",
@@ -50,7 +50,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_ruqul")
+"texture": ExtResource("10_6dx7k")
 }],
 "loop": false,
 "name": &"pull_handle",
@@ -58,7 +58,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_t0d2s")
+"texture": ExtResource("11_bf3ui")
 }],
 "loop": false,
 "name": &"text_final",
@@ -70,7 +70,7 @@ script = ExtResource("1_um5cl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1503941758]
 sprite_frames = SubResource("SpriteFrames_77dry")
-animation = &"pull_handle"
+animation = &"dispense"
 
 [node name="Timer" type="Timer" parent="." unique_id=1193820832]
 

@@ -14,11 +14,28 @@ script = ExtResource("1_a7ygb")
 texture = ExtResource("1_6v2g1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1565800397]
+visible = false
 shape = SubResource("CapsuleShape2D_a7ygb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=403044974]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1879812061]
+visible = false
 shape = SubResource("CapsuleShape2D_a7ygb")
+
+[node name="ShatterParticles" type="CPUParticles2D" parent="." unique_id=775663531]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+scale_amount_min = 1.5
+scale_amount_max = 2.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
