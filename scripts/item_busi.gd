@@ -9,6 +9,12 @@ extends RigidBody2D
 var is_destroyed = false 
 
 func _ready():
+	# 1. Bikin sudut awal acak (0 sampai 360 derajat) biar gak kaku
+	rotation = randf_range(0, TAU)
+	
+	# 2. Bikin dia muter-muter pas melayang
+	angular_velocity = randf_range(-20, 20)
+	
 	# Hubungkan sinyal saat RigidBody nabrak sesuatu (Fisika)
 	body_entered.connect(_on_body_entered)
 	
@@ -20,7 +26,6 @@ func _on_body_entered(body):
 	if is_destroyed: return
 	
 	# Cek apakah yang ditabrak itu aspal/ground
-	# Asumsi node lantai lu namanya "Ground"
 	if body.name == "Ground":
 		shatter_and_destroy()
 
@@ -28,28 +33,27 @@ func _on_body_entered(body):
 func _on_hitbox_body_entered(body):
 	if is_destroyed: return
 	
-	# Nanti kita ganti "Zombie" sesuai nama grup atau class musuh lu
-	if body.name.begins_with("Zombie"):
+	# Ngecek apakah object yg ditabrak punya fungsi take_damage
+	if body.has_method("take_damage"):
 		print(">> Busi mengenai Zombie!")
-		# TODO: Panggil fungsi kurangin darah zombie di sini
+		# Eksekusi fungsi kurangin darah di zombie.gd sebesar 1
+		body.take_damage(1)
 		shatter_and_destroy()
 
 # FUNGSI 3: ANIMASI HANCUR
 func shatter_and_destroy():
 	is_destroyed = true
 	
-	# 1. Matikan fungsi fisika biar gak mantul lagi
 	freeze = true
-	hit_box.monitoring = false
+	hit_box.set_deferred("monitoring", false) 
 	
-	# 2. Sembunyikan gambar utuh businya
 	sprite.visible = false
 	
-	# 3. Nyalakan efek partikel pecah
-	particles.emitting = true
+	if particles:
+		# BIKIN REALISTIS: Paksa rotasi partikel sejajar sama dunia nyata (layar), bukan ngikutin busi
+		particles.global_rotation = 0 
+		
+		particles.emitting = true
+		await get_tree().create_timer(particles.lifetime).timeout
 	
-	# 4. Tunggu sampai partikel selesai (sesuai lifetime 0.5 detik)
-	await get_tree().create_timer(particles.lifetime).timeout
-	
-	# 5. Hapus item dari game biar gak menuhin RAM
 	queue_free()

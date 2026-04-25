@@ -176,3 +176,6 @@ scale = Vector2(1.25, 1.25)
 [node name="VendingMachine" parent="." unique_id=1202862248 instance=ExtResource("24_y6deb")]
 z_index = 20
 position = Vector2(57, 118)
+
+[node name="ItemBusi" parent="." unique_id=1146298023 instance=ExtResource("3_jyhfs")]
+position = Vector2(151, 49)
