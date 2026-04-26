@@ -49,6 +49,7 @@ shape = SubResource("CircleShape2D_b33ot")
 
 [node name="ShockParticles" type="CPUParticles2D" parent="." unique_id=1551165175]
 material = SubResource("CanvasItemMaterial_7olb4")
+emitting = false
 amount = 20
 texture = ExtResource("3_b33ot")
 lifetime = 0.15000000000000002

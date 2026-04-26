@@ -32,7 +32,7 @@ func _on_direct_hit(body):
 			has_hit_zombie = true
 			body.take_damage(damage_on_hit)
 			if body.has_method("apply_knockback"):
-				body.apply_knockback(200.0)
+				body.apply_knockback(50.0)
 
 func _on_body_entered(body):
 	if is_active: return

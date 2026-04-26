@@ -41,4 +41,4 @@ func _on_hitbox_body_entered(body):
 		body.take_damage(damage)
 		
 		if body.has_method("apply_knockback"):
-			body.apply_knockback(100.0)
+			body.apply_knockback(25.0)
