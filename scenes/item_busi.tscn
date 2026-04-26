@@ -8,6 +8,7 @@ radius = 4.0
 height = 18.0
 
 [node name="ItemBusi" type="RigidBody2D" unique_id=1146298023]
+z_index = 2
 collision_layer = 4
 contact_monitor = true
 max_contacts_reported = 1

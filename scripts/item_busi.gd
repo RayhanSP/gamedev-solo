@@ -44,15 +44,14 @@ func _on_hitbox_body_entered(body):
 func shatter_and_destroy():
 	is_destroyed = true
 	
-	freeze = true
+	# BIKIN AMAN DARI ERROR: Pakai set_deferred untuk semua perubahan status fisika
+	set_deferred("freeze", true)
 	hit_box.set_deferred("monitoring", false) 
 	
 	sprite.visible = false
 	
 	if particles:
-		# BIKIN REALISTIS: Paksa rotasi partikel sejajar sama dunia nyata (layar), bukan ngikutin busi
 		particles.global_rotation = 0 
-		
 		particles.emitting = true
 		await get_tree().create_timer(particles.lifetime).timeout
 	

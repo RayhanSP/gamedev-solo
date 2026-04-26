@@ -8,18 +8,20 @@ friction = 0.4
 bounce = 0.7
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xstn"]
-radius = 9.0
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t1aq5"]
-radius = 9.0
+radius = 13.0
 
 [node name="ItemBan" type="RigidBody2D" unique_id=1733318441]
+z_index = 2
 collision_layer = 4
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_o130e")
 script = ExtResource("1_t1aq5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=538385625]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_1xstn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471682228]
