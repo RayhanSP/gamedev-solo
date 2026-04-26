@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b7ojs4mc60y5j"]
+
+[ext_resource type="Script" uid="uid://grqvh7l6foos" path="res://scripts/item_metal_gear.gd" id="1_brufh"]
+[ext_resource type="Texture2D" uid="uid://diia1l4uymvpt" path="res://assets/sprites/metalGear.png" id="2_41pm2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvhth"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f2yp8"]
+radius = 8.0
+
+[node name="ItemMetalGear" type="RigidBody2D" unique_id=698335959]
+collision_layer = 0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_brufh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1804435012]
+texture = ExtResource("2_41pm2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1259607033]
+shape = SubResource("CircleShape2D_mvhth")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=287197490]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=265257853]
+shape = SubResource("CircleShape2D_f2yp8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=752596188]
