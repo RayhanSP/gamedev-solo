@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://blfe2lt2lq7co"]
+
+[ext_resource type="Script" uid="uid://ccoy2s5papwun" path="res://scripts/item_battery.gd" id="1_44w5l"]
+[ext_resource type="Texture2D" uid="uid://barwwrpd0oak3" path="res://assets/sprites/carBattery.png" id="2_b33ot"]
+[ext_resource type="Texture2D" uid="uid://dopxp6wtpqlx2" path="res://assets/sprites/batteryLightning.png" id="3_b33ot"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7olb4"]
+friction = 0.8
+bounce = 0.1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_44w5l"]
+radius = 8.590831
+height = 27.177612
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b33ot"]
+radius = 46.010868
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7olb4"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="ItemBattery" type="RigidBody2D" unique_id=325952268]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_7olb4")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_44w5l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1799721128]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_b33ot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=467373598]
+position = Vector2(0, -1)
+rotation = 0.89884454
+shape = SubResource("CapsuleShape2D_44w5l")
+
+[node name="ShockZone" type="Area2D" parent="." unique_id=1810779284]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShockZone" unique_id=391453986]
+shape = SubResource("CircleShape2D_b33ot")
+
+[node name="ShockTimer" type="Timer" parent="." unique_id=161878664]
+
+[node name="ShockParticles" type="CPUParticles2D" parent="." unique_id=1551165175]
+material = SubResource("CanvasItemMaterial_7olb4")
+amount = 20
+texture = ExtResource("3_b33ot")
+lifetime = 0.15000000000000002
+emission_shape = 1
+emission_sphere_radius = 12.68
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 0.5
+scale_amount_max = 0.7
+color = Color(0.53, 1, 0.8903333, 1)
+anim_offset_max = 1.0

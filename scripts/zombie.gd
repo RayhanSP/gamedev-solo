@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var knockback_velocity: Vector2 = Vector2.ZERO # Menampung tenaga dorongan
 var is_dead: bool = false # Flag biar zombi gak bangkit dari kubur
 
+@onready var original_speed: float = speed
 @onready var anim = $AnimatedSprite2D
 
 func _ready():
@@ -63,3 +64,21 @@ func apply_knockback(strength: float):
 
 func die():
 	queue_free()
+	
+# FUNGSI BARU: Efek Kesetrum (Slow + Gosong)
+func apply_shock_effect(slow_multiplier: float, duration: float):
+	if is_dead: return
+	
+	# 1. Bikin sprite jadi warna abu-abu gelap (gosong)
+	anim.modulate = Color(0.3, 0.3, 0.3) 
+	
+	# 2. Kurangi kecepatan jalan
+	speed = original_speed * slow_multiplier
+	
+	# 3. Tunggu durasi setruman habis
+	await get_tree().create_timer(duration).timeout
+	
+	# 4. Kalau belum mati, kembalikan ke kondisi normal
+	if not is_dead:
+		anim.modulate = Color(1.0, 1.0, 1.0) # Balik ke warna asli
+		speed = original_speed

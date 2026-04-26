@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ojs4mc60y5j" path="res://scenes/item_metal_gear.tscn" id="24_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://cxt0ibblim5iq" path="res://scenes/vending_machine.tscn" id="24_y6deb"]
 [ext_resource type="PackedScene" uid="uid://cxxs7pcsc4ei4" path="res://scenes/item_ban.tscn" id="25_og1vs"]
+[ext_resource type="PackedScene" uid="uid://blfe2lt2lq7co" path="res://scenes/item_battery.tscn" id="25_vxglm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(20, 17.552002)
@@ -166,22 +167,21 @@ shape = SubResource("RectangleShape2D_sgp6g")
 position = Vector2(118, 129)
 scale = Vector2(1.25, 1.25)
 script = ExtResource("2_sugp2")
-ammo_list = Array[PackedScene]([ExtResource("3_jyhfs"), ExtResource("25_og1vs"), ExtResource("24_2wyq8")])
+ammo_list = Array[PackedScene]([ExtResource("3_jyhfs"), ExtResource("25_og1vs"), ExtResource("24_2wyq8"), ExtResource("25_vxglm")])
 projectile_scene = ExtResource("3_jyhfs")
 
 [node name="Zombie" parent="." unique_id=1707422033 instance=ExtResource("4_jyhfs")]
 z_index = 1
 position = Vector2(606, 255)
 scale = Vector2(1.25, 1.25)
+max_health = 150
 
 [node name="Zombie2" parent="." unique_id=136789594 instance=ExtResource("4_jyhfs")]
 z_index = 1
 position = Vector2(578, 255)
 scale = Vector2(1.25, 1.25)
+max_health = 250
 
 [node name="VendingMachine" parent="." unique_id=1202862248 instance=ExtResource("24_y6deb")]
 z_index = 1
 position = Vector2(57, 118)
-
-[node name="ItemBan" parent="." unique_id=1733318441 instance=ExtResource("25_og1vs")]
-position = Vector2(163, 61)
