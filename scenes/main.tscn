@@ -8,18 +8,30 @@
 [ext_resource type="Texture2D" uid="uid://byfbdlvbhpvsa" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/2.png" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://5j762164a1pf" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/3.png" id="3_85g3d"]
 [ext_resource type="PackedScene" uid="uid://ctv2v3hwntkhj" path="res://scenes/item_busi.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c03n45erp2j0q" path="res://scenes/game_over_ui.tscn" id="3_yq6so"]
+[ext_resource type="Texture2D" uid="uid://tjywf44pikmt" path="res://assets/health_bar_house/houseHealthBar.png" id="4_5poiv"]
 [ext_resource type="Texture2D" uid="uid://cdhb0xc3ltnyd" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/1.png" id="4_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://ci3ycmj402dn8" path="res://scenes/zombie.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://dmj4peua414v5" path="res://assets/health_bar_house/houseHealthBar1.png" id="5_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://b2sjvyy5hnnyx" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/2.png" id="5_muem4"]
+[ext_resource type="Texture2D" uid="uid://dsqu625asuc6d" path="res://assets/health_bar_house/houseHealthBar2.png" id="6_chjal"]
 [ext_resource type="Texture2D" uid="uid://cqvcxc1kasvwh" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/3.png" id="6_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://bfxglc767uavn" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/1.png" id="7_0ld40"]
+[ext_resource type="Texture2D" uid="uid://dmqya6d382ayu" path="res://assets/health_bar_house/houseHealthBar3.png" id="7_cjqg0"]
 [ext_resource type="Texture2D" uid="uid://b0b7lye4c1743" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/2.png" id="8_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://cfc3umvt2djfk" path="res://assets/health_bar_house/houseHealthBar4.png" id="8_vchkt"]
 [ext_resource type="Texture2D" uid="uid://dtniftqrripqt" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/1.png" id="8_yc10j"]
 [ext_resource type="Texture2D" uid="uid://dsyfrgyyhkhiv" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/2.png" id="9_jscy8"]
+[ext_resource type="Texture2D" uid="uid://brn5xjgpdtoh8" path="res://assets/health_bar_house/houseHealthBar5.png" id="9_txyw0"]
 [ext_resource type="Texture2D" uid="uid://cucald44p422d" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/3.png" id="9_yc10j"]
 [ext_resource type="Texture2D" uid="uid://lfgwv6k1d2xq" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/4.png" id="10_jscy8"]
+[ext_resource type="Texture2D" uid="uid://dvvw4yampw108" path="res://assets/health_bar_house/houseHealthBar6.png" id="10_vc5cj"]
+[ext_resource type="Texture2D" uid="uid://b5abxteorwsbc" path="res://assets/health_bar_house/houseHealthBar7.png" id="11_nvyfr"]
 [ext_resource type="Texture2D" uid="uid://7bbarwmvuft5" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/5.png" id="11_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://c07q7h56megep" path="res://assets/health_bar_house/houseHealthBar8.png" id="12_ty1g6"]
 [ext_resource type="Texture2D" uid="uid://cyy3gt7nr7nns" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/6.png" id="12_y6deb"]
+[ext_resource type="Texture2D" uid="uid://2cr06088jkh3" path="res://assets/health_bar_house/houseHealthBar9.png" id="13_j2jfr"]
+[ext_resource type="Texture2D" uid="uid://s3mgcac4cv2t" path="res://assets/health_bar_house/houseHealthBar10.png" id="14_bjg73"]
 [ext_resource type="Texture2D" uid="uid://bb62c42rb6tiv" path="res://assets/background/house_day.png" id="16_pm3ni"]
 [ext_resource type="Texture2D" uid="uid://y4arpffl8mom" path="res://assets/background/house_evening.png" id="17_y6deb"]
 [ext_resource type="Texture2D" uid="uid://cca6gnyfnuobm" path="res://assets/background/house_night.png" id="18_og1vs"]
@@ -28,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://cxt0ibblim5iq" path="res://scenes/vending_machine.tscn" id="24_y6deb"]
 [ext_resource type="PackedScene" uid="uid://cxxs7pcsc4ei4" path="res://scenes/item_ban.tscn" id="25_og1vs"]
 [ext_resource type="PackedScene" uid="uid://blfe2lt2lq7co" path="res://scenes/item_battery.tscn" id="25_vxglm"]
+[ext_resource type="Texture2D" uid="uid://cburkuog7t6cu" path="res://assets/sprites/warningSymbol.png" id="30_fv21b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(29.550388, 17.552002)
@@ -37,6 +50,8 @@ size = Vector2(29.550388, 17.552002)
 [node name="Main" type="Node2D" unique_id=159988853]
 script = ExtResource("1_2f3dj")
 zombie_scene = ExtResource("4_jyhfs")
+game_over_scene = ExtResource("3_yq6so")
+bar_textures = Array[Texture2D]([ExtResource("4_5poiv"), ExtResource("5_2cjbq"), ExtResource("6_chjal"), ExtResource("7_cjqg0"), ExtResource("8_vchkt"), ExtResource("9_txyw0"), ExtResource("10_vc5cj"), ExtResource("11_nvyfr"), ExtResource("12_ty1g6"), ExtResource("13_j2jfr"), ExtResource("14_bjg73")])
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=822555748]
 
@@ -191,3 +206,19 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HouseDefenseArea" unique_id=241871131]
 scale = Vector2(1.185, 1.185)
 shape = SubResource("RectangleShape2D_2f3dj")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2011802465]
+
+[node name="ZombieBar" type="TextureRect" parent="HUD" unique_id=1876792641]
+offset_left = 40.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 25.0
+
+[node name="WarningSymbol" type="TextureRect" parent="HUD" unique_id=539151269]
+modulate = Color(1, 1, 1, 0)
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 102.0
+offset_bottom = 42.0
+texture = ExtResource("30_fv21b")

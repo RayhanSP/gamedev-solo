@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c03n45erp2j0q"]
+
+[ext_resource type="Script" uid="uid://bvqiateatsfns" path="res://scripts/game_over_ui.gd" id="1_y6ord"]
+[ext_resource type="Shader" uid="uid://dlgudsyuafqf6" path="res://shaders/game_over_ui.gdshader" id="2_lk38d"]
+[ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="3_lk38d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbgkd"]
+shader = ExtResource("2_lk38d")
+shader_parameter/blur_amount = 2.0
+
+[node name="GameOverUI" type="CanvasLayer" unique_id=1889517127]
+process_mode = 3
+script = ExtResource("1_y6ord")
+
+[node name="BlurEffect" type="ColorRect" parent="." unique_id=666642598]
+material = SubResource("ShaderMaterial_nbgkd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1183102567]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=82637669]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=396393188]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lk38d")
+theme_override_font_sizes/font_size = 35
+text = "GAME OVER"
+
+[node name="StatsLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1589368592]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lk38d")
+theme_override_font_sizes/font_size = 12
+text = "TIME SPENT: uhhh"
+
+[node name="BtnReplay" type="Button" parent="CenterContainer/VBoxContainer" unique_id=361209897]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lk38d")
+theme_override_font_sizes/font_size = 12
+text = "replay"
+
+[node name="BtnMenu" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1672952070]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lk38d")
+theme_override_font_sizes/font_size = 12
+text = "back to menu"
