@@ -27,8 +27,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aetfh"]
-radius = 13.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gx57"]
+size = Vector2(16.5, 23.5)
 
 [node name="Zombie" type="CharacterBody2D" unique_id=1707422033]
 scale = Vector2(2, 2)
@@ -36,10 +36,11 @@ collision_layer = 2
 script = ExtResource("1_4gx57")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756556107]
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_3fthk")
 animation = &"walk"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1999441093]
-position = Vector2(1, 1)
-shape = SubResource("CapsuleShape2D_aetfh")
+position = Vector2(1.25, 0.75)
+shape = SubResource("RectangleShape2D_4gx57")
