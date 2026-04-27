@@ -31,9 +31,11 @@ animations = [{
 size = Vector2(16.5, 23.5)
 
 [node name="Zombie" type="CharacterBody2D" unique_id=1707422033]
+z_index = 1
 scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_4gx57")
+speed = 60.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756556107]
 scale = Vector2(0.8, 0.8)
