@@ -21,6 +21,12 @@ func _ready():
 	gacha_btn.disabled = true
 	update_machine_state()
 
+# --- FUNGSI INPUT (ENTER UNTUK GACHA) ---
+func _input(event):
+	# Pastikan tombol ditekan, dan game tidak sedang Game Over/Paused
+	if event.is_action_pressed("gacha_pull") and not get_tree().paused:
+		_on_gacha_btn_pressed()
+
 # Fungsi untuk dipanggil dari main.gd saat poin mencapai 5
 func add_charge(amount):
 	available_charges += amount
@@ -53,6 +59,10 @@ func _on_animation_finished():
 func _on_gacha_btn_pressed():
 	if is_gacha_running or available_charges <= 0: return
 	
+	var main_scene = get_tree().current_scene
+	if main_scene.has_method("record_gacha"):
+		main_scene.record_gacha()
+		
 	print(">> Memulai Proses Gacha...")
 	is_gacha_running = true
 	gacha_btn.disabled = true

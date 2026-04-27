@@ -22,7 +22,8 @@ func _ready():
 		projectile_scene = ammo_list[0]
 		
 func _process(delta):
-	if Input.is_action_pressed("ui_accept"):
+	# UBAHAN KEYBINDING: Pakai "throw_item" (Space)
+	if Input.is_action_pressed("throw_item"):
 		is_charging = true
 		
 		var ammo_name = ""
@@ -39,7 +40,8 @@ func _process(delta):
 			update_trajectory()
 			line_2d.show()
 
-	if Input.is_action_just_released("ui_accept") and is_charging:
+	# UBAHAN KEYBINDING: Pakai "throw_item" (Space)
+	if Input.is_action_just_released("throw_item") and is_charging:
 		anim.play("throw")
 		throw_item()
 		current_power = 0.0
@@ -54,7 +56,6 @@ func _process(delta):
 
 func update_trajectory():
 	line_2d.clear_points()
-	
 	var pos = throw_point.position
 	var direction = Vector2.RIGHT.rotated(deg_to_rad(throw_angle))
 	var vel = direction * current_power
@@ -72,10 +73,15 @@ func throw_item():
 		
 		var ammo_name = projectile_scene.resource_path.get_file().get_basename()
 		
+		# --- TRACKING ITEM DIGUNAKAN KE MAIN SCENE ---
+		var main_scene = get_tree().current_scene
+		if main_scene.has_method("record_item_use"):
+			main_scene.record_item_use(ammo_name)
+		# ---------------------------------------------
+		
 		if ammo_name == "item_metal_gear":
 			projectile.global_position = throw_point.global_position
 			projectile.gravity_scale = 1.0 
-			
 			var fall_direction = Vector2(-100, 220.0).normalized()
 			projectile.apply_central_impulse(fall_direction * current_power)
 		else:
@@ -84,9 +90,7 @@ func throw_item():
 			projectile.apply_central_impulse(direction * current_power)
 
 func cycle_ammo():
-	if ammo_list.is_empty():
-		return
-		
+	if ammo_list.is_empty(): return
 	current_ammo_index = (current_ammo_index + 1) % ammo_list.size()
 	projectile_scene = ammo_list[current_ammo_index]
 	var ammo_name = projectile_scene.resource_path.get_file().get_basename()

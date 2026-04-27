@@ -23,7 +23,7 @@ extends Node2D
 var score: int = 0
 var gacha_count: int = 0
 var total_duration: float = 0.0
-var items_used: Dictionary = {"Busi": 0, "Ban": 0, "MetalGear": 0, "Aki": 0}
+var items_used: Dictionary = {"item_busi": 0, "item_ban": 0, "item_metal_gear": 0, "item_battery": 0}
 var gacha_points_progress: int = 0
 
 # === VARIABEL SISTEM WAKTU ===
@@ -146,18 +146,31 @@ func add_score(points):
 	score += points
 	score_label.text = str(score)
 	
-	gacha_points_progress += points
-	if gacha_points_progress >= 5:
-		var charges_gained = int(gacha_points_progress / 5)
-		gacha_points_progress = gacha_points_progress % 5 
-		
-		# Suruh mesin gacha nambahin charge
-		if vending_machine and vending_machine.has_method("add_charge"):
-			vending_machine.add_charge(charges_gained)
+	# --- ANIMASI FUNKY UNTUK SCORE ---
+	score_label.pivot_offset = score_label.size / 2.0 
+	var score_tween = create_tween()
+	score_tween.tween_property(score_label, "scale", Vector2(1.3, 0.7), 0.05)
+	score_tween.tween_property(score_label, "scale", Vector2(0.8, 1.3), 0.1)
+	score_tween.tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	
+	# --- LOGIKA GACHA NON-AKUMULATIF ---
+	# Cuma nambah progress kalau gacha belum ready (charges == 0)
+	if vending_machine and vending_machine.available_charges == 0:
+		gacha_points_progress += points
+		if gacha_points_progress >= 5:
+			# Langsung kasih 1 charge aja, poin sisanya hangus!
+			vending_machine.add_charge(1)
+			gacha_points_progress = 0 
 
-func record_gacha(): gacha_count += 1
+func record_gacha(): 
+	gacha_count += 1
+
 func record_item_use(item_name):
-	if items_used.has(item_name): items_used[item_name] += 1
+	# Fungsi ini dipanggil dari player.gd saat ngelempar
+	if items_used.has(item_name): 
+		items_used[item_name] += 1
+	else:
+		items_used[item_name] = 1 # Jaga-jaga kalau ada item baru
 
 # --- FUNGSI SPAWNER & WAKTU ---
 func _kalkulasi_delay_spawn():
