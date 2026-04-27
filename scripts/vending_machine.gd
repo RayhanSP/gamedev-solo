@@ -10,56 +10,64 @@ var gacha_pool = [
 	"jackpot_heal"
 ]
 
-# Flag buat nandain mesin lagi dipake, biar animasi idle gak nyela
 var is_gacha_running = false 
+var available_charges = 0 # Menyimpan jatah gacha
 
 func _ready():
-	# Hubungkan signal saat sebuah animasi selesai
 	anim.animation_finished.connect(_on_animation_finished)
 	gacha_btn.pressed.connect(_on_gacha_btn_pressed)
 	
-	start_idle_sequence()
+	# Default tombol mati di awal
+	gacha_btn.disabled = true
+	update_machine_state()
 
-func start_idle_sequence():
+# Fungsi untuk dipanggil dari main.gd saat poin mencapai 5
+func add_charge(amount):
+	available_charges += amount
+	print(">> Gacha Charge bertambah! Sisa: ", available_charges)
+	update_machine_state()
+
+# Fungsi sakti untuk ngecek status mesin
+func update_machine_state():
 	if is_gacha_running: return
-	anim.play("idle")
+	
+	if available_charges > 0:
+		gacha_btn.disabled = false
+		anim.play("ready") # Mainkan animasi 1 sprite "ready" lu
+	else:
+		gacha_btn.disabled = true
+		anim.play("idle") # Balik ke animasi muter biasa kalau poin habis
 
-# Fungsi ini otomatis kepanggil tiap kali SATU putaran animasi selesai
 func _on_animation_finished():
 	if is_gacha_running: return
 	
-	# Kalau animasi idle (rolling text) beres, pindah ke teks statis
-	if anim.animation == "idle":
+	# Kalau lagi idle (charge habis) dan beres 1 putaran, pindah ke text_final
+	if anim.animation == "idle" and available_charges <= 0:
 		anim.play("text_final")
-		
-		# Tahan di teks statis selama 3 detik
 		await get_tree().create_timer(3.0).timeout
 		
-		# Pastikan player belum mencet tombol gacha selama nunggu 3 detik tadi
-		if not is_gacha_running:
-			start_idle_sequence()
+		# Pastikan player gak tiba-tiba dapet charge pas lagi nunggu 3 detik
+		if not is_gacha_running and available_charges <= 0:
+			anim.play("idle")
 
 func _on_gacha_btn_pressed():
-	if is_gacha_running: return
+	if is_gacha_running or available_charges <= 0: return
 	
 	print(">> Memulai Proses Gacha...")
 	is_gacha_running = true
 	gacha_btn.disabled = true
 	
-	# FASE 1: Tarik Tuas (Anticipation) - Cepat aja
+	# Kurangi jatah gacha
+	available_charges -= 1
+	
 	anim.play("pull_handle")
 	await get_tree().create_timer(0.4).timeout 
 	
-	# FASE 2: Mesin Berputar / Dispense
 	anim.play("dispense")
-	# Durasi ideal mesin gacha nahan ketegangan: 1.2 sampai 1.5 detik
 	await get_tree().create_timer(1.2).timeout 
 	
-	# FASE 3: Kasih Hadiah
 	var hadiah = gacha_pool.pick_random()
 	print("!!! DAPET ITEM: ", hadiah.to_upper(), " !!!")
 	
-	# FASE 4: Reset mesin ke kondisi awal
 	is_gacha_running = false
-	gacha_btn.disabled = false
-	start_idle_sequence()
+	update_machine_state() # Bakal ngecek otomatis: kalau charge masih ada, balik ke "READY". Kalau habis, balik "IDLE".

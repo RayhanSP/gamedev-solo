@@ -10,14 +10,21 @@ extends Node2D
 # === UI ZOMBIE BAR & WARNING ===
 @onready var zombie_bar = $HUD/ZombieBar
 @onready var warning_symbol = $HUD/WarningSymbol
-# Nanti drag 11 gambar bar lu ke array ini di Inspector!
 @export var bar_textures: Array[Texture2D] 
+
+# === HUD TAMBAHAN & GACHA ===
+@onready var count_label = $HUD/ZombieBar/CountLabel
+@onready var time_label = $HUD/TimeLabel
+@onready var score_label = $HUD/ScoreLabel
+#@onready var btn_pause = $HUD/BtnPause
+@onready var vending_machine = $VendingMachine
 
 # === STATISTIK PERMAINAN ===
 var score: int = 0
 var gacha_count: int = 0
 var total_duration: float = 0.0
 var items_used: Dictionary = {"Busi": 0, "Ban": 0, "MetalGear": 0, "Aki": 0}
+var gacha_points_progress: int = 0
 
 # === VARIABEL SISTEM WAKTU ===
 var wave_level: int = 1
@@ -40,8 +47,12 @@ func _ready():
 	_kalkulasi_delay_spawn()
 	
 	defense_area.body_entered.connect(_on_zombie_passed)
+	#btn_pause.pressed.connect(_on_pause_pressed)
 	
 	# Set tampilan awal UI
+	count_label.text = "0 / 10"
+	score_label.text = "0"
+	
 	if bar_textures.size() > 0:
 		zombie_bar.texture = bar_textures[0]
 	warning_symbol.modulate.a = 0.0 # Pastikan awal-awal hilang
@@ -51,6 +62,11 @@ func _process(delta):
 		
 	total_duration += delta
 	phase_timer += delta
+	
+	# Format Waktu ke MM:SS (Menit:Detik)
+	var mins = int(total_duration) / 60
+	var secs = int(total_duration) % 60
+	time_label.text = "%02d:%02d" % [mins, secs]
 	
 	if phase_timer >= phase_duration:
 		phase_timer = 0.0
@@ -62,11 +78,22 @@ func _process(delta):
 		_kalkulasi_delay_spawn() 
 		spawn_zombie_wave()
 
+# --- FUNGSI PAUSE ---
+#func _on_pause_pressed():
+	#get_tree().paused = !get_tree().paused
+	#if get_tree().paused:
+		#btn_pause.text = "RESUME"
+	#else:
+		#btn_pause.text = "PAUSE"
+
 # --- FUNGSI ZOMBIE MASUK RUMAH ---
 func _on_zombie_passed(body):
 	if body.has_method("take_damage"):
 		zombies_passed += 1
 		print(">> GAWAT! Zombie masuk! Total di dalam: ", zombies_passed)
+		
+		# Update label indikator X/10
+		count_label.text = str(zombies_passed) + " / 10"
 		
 		# Panggil fungsi transisi UI funky
 		update_zombie_bar_ui()
@@ -84,15 +111,11 @@ func update_zombie_bar_ui():
 		zombie_bar.texture = bar_textures[index]
 	
 	# 2. Efek Transisi Funky (Squash & Stretch Bounce)
-	# Set pivot ke tengah biar nge-scale nya asik
 	zombie_bar.pivot_offset = zombie_bar.size / 2.0 
 	
 	var bar_tween = create_tween()
-	# Gepeng ke bawah
 	bar_tween.tween_property(zombie_bar, "scale", Vector2(1.2, 0.7), 0.05)
-	# Melesat ke atas
 	bar_tween.tween_property(zombie_bar, "scale", Vector2(0.8, 1.2), 0.1)
-	# Balik normal dengan gaya memantul
 	bar_tween.tween_property(zombie_bar, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
 	# 3. Logika Warning Symbol (Mulai kedut saat zombie >= 6)
@@ -104,9 +127,7 @@ func activate_warning_symbol():
 	print("!!! PERINGATAN BAHAYA AKTIF !!!")
 	
 	var warning_tween = create_tween().set_loops() # Looping terus menerus
-	# Fade In (Jelas)
 	warning_tween.tween_property(warning_symbol, "modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_SINE)
-	# Fade Out (Agak transparan)
 	warning_tween.tween_property(warning_symbol, "modulate:a", 0.1, 0.25).set_trans(Tween.TRANS_SINE)
 
 # --- FUNGSI GAME OVER & STATS ---
@@ -120,7 +141,20 @@ func trigger_game_over():
 		if ui.has_method("set_stats"):
 			ui.set_stats(int(total_duration), score, gacha_count, items_used)
 
-func add_score(points): score += points
+# FUNGSI SCORING & GACHA CHARGE
+func add_score(points): 
+	score += points
+	score_label.text = str(score)
+	
+	gacha_points_progress += points
+	if gacha_points_progress >= 5:
+		var charges_gained = int(gacha_points_progress / 5)
+		gacha_points_progress = gacha_points_progress % 5 
+		
+		# Suruh mesin gacha nambahin charge
+		if vending_machine and vending_machine.has_method("add_charge"):
+			vending_machine.add_charge(charges_gained)
+
 func record_gacha(): gacha_count += 1
 func record_item_use(item_name):
 	if items_used.has(item_name): items_used[item_name] += 1

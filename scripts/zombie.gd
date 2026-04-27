@@ -63,6 +63,11 @@ func apply_knockback(strength: float):
 	knockback_velocity.x = strength
 
 func die():
+	# FUNGSI BARU: Tambah skor saat zombie mati
+	var main_scene = get_tree().current_scene
+	if main_scene.has_method("add_score"):
+		main_scene.add_score(1)
+		
 	queue_free()
 	
 # FUNGSI BARU: Efek Kesetrum (Slow + Gosong)
