@@ -8,6 +8,41 @@
 shader = ExtResource("2_lk38d")
 shader_parameter/blur_amount = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk38d"]
+bg_color = Color(0.84, 0.67200005, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cotc0"]
+content_margin_top = 4.0
+bg_color = Color(0.19, 0.15200001, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbgkd"]
+bg_color = Color(0.84, 0.7644, 0.46199998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lk38d"]
+
 [node name="GameOverUI" type="CanvasLayer" unique_id=1889517127]
 process_mode = 3
 script = ExtResource("1_y6ord")
@@ -32,24 +67,43 @@ layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=396393188]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_lk38d")
 theme_override_font_sizes/font_size = 35
 text = "GAME OVER"
 
 [node name="StatsLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1589368592]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_lk38d")
 theme_override_font_sizes/font_size = 12
 text = "TIME SPENT: uhhh"
 
 [node name="BtnReplay" type="Button" parent="CenterContainer/VBoxContainer" unique_id=361209897]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_lk38d")
 theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_lk38d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cotc0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nbgkd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lk38d")
 text = "replay"
+icon_alignment = 1
 
 [node name="BtnMenu" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1672952070]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_lk38d")
 theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_lk38d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cotc0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nbgkd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lk38d")
 text = "back to menu"
