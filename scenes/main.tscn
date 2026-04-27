@@ -261,7 +261,7 @@ offset_right = -20.340027
 offset_bottom = 41.000027
 grow_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("41_2cjbq")
 text = "0"
 

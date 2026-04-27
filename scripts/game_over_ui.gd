@@ -34,4 +34,4 @@ func _on_menu_pressed():
 	get_tree().paused = false
 	print("Pindah ke Main Menu!") 
 	# Jika sudah ada scene menu:
-	# get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
