@@ -30,7 +30,9 @@
 [ext_resource type="PackedScene" uid="uid://blfe2lt2lq7co" path="res://scenes/item_battery.tscn" id="25_vxglm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
-size = Vector2(22.266201, 17.552002)
+size = Vector2(29.550388, 17.552002)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2f3dj"]
 
 [node name="Main" type="Node2D" unique_id=159988853]
 script = ExtResource("1_2f3dj")
@@ -162,8 +164,8 @@ position = Vector2(320.415, 325.095)
 scale = Vector2(6.45, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=83386468]
-position = Vector2(5.6655045, -6.119995)
-scale = Vector2(5, 4.9999986)
+position = Vector2(-12.544964, -6.119995)
+scale = Vector2(5, 4.9999976)
 shape = SubResource("RectangleShape2D_sgp6g")
 
 [node name="Player" parent="." unique_id=1612350967 instance=ExtResource("1_o5qli")]
@@ -179,3 +181,13 @@ position = Vector2(57, 118)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1221279923]
 position = Vector2(671, 249)
+
+[node name="HouseDefenseArea" type="Area2D" parent="." unique_id=1599464840]
+position = Vector2(-100.935, 212.295)
+scale = Vector2(5.195, 5.195)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseDefenseArea" unique_id=241871131]
+scale = Vector2(1.185, 1.185)
+shape = SubResource("RectangleShape2D_2f3dj")
