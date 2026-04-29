@@ -79,7 +79,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_lk38d")
 theme_override_font_sizes/font_size = 10
-text = "TIME SPENT: uhhh"
+text = "SURVIVED: 0 SECS
+SCORE: 0
+GACHA PULL: 0 TIMES
+ITEMS USED:
+- SPARK PLUG: 0
+- USED TIRES: 0
+- METAL GEAR: 0
+- BATTERY: 0"
 
 [node name="BtnReplay" type="Button" parent="CenterContainer/VBoxContainer" unique_id=361209897]
 layout_mode = 2
