@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Solo Game Project"
-run/main_scene="uid://dmhnrvtxvbh2s"
+run/main_scene="uid://v21lyoywbjtg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
