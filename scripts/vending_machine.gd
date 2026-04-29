@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var anim = $AnimatedSprite2D
-@onready var gacha_btn = $UI_Gacha/GachaButton
 
 var gacha_pool = [
 	"busi", "busi", "busi", "busi",
@@ -15,17 +14,13 @@ var available_charges = 0 # Menyimpan jatah gacha
 
 func _ready():
 	anim.animation_finished.connect(_on_animation_finished)
-	gacha_btn.pressed.connect(_on_gacha_btn_pressed)
-	
-	# Default tombol mati di awal
-	gacha_btn.disabled = true
 	update_machine_state()
 
 # --- FUNGSI INPUT (ENTER UNTUK GACHA) ---
 func _input(event):
 	# Pastikan tombol ditekan, dan game tidak sedang Game Over/Paused
 	if event.is_action_pressed("gacha_pull") and not get_tree().paused:
-		_on_gacha_btn_pressed()
+		_trigger_gacha()
 
 # Fungsi untuk dipanggil dari main.gd saat poin mencapai 5
 func add_charge(amount):
@@ -38,10 +33,8 @@ func update_machine_state():
 	if is_gacha_running: return
 	
 	if available_charges > 0:
-		gacha_btn.disabled = false
 		anim.play("ready") # Mainkan animasi 1 sprite "ready" lu
 	else:
-		gacha_btn.disabled = true
 		anim.play("idle") # Balik ke animasi muter biasa kalau poin habis
 
 func _on_animation_finished():
@@ -56,7 +49,7 @@ func _on_animation_finished():
 		if not is_gacha_running and available_charges <= 0:
 			anim.play("idle")
 
-func _on_gacha_btn_pressed():
+func _trigger_gacha():
 	if is_gacha_running or available_charges <= 0: return
 	
 	var main_scene = get_tree().current_scene
@@ -65,7 +58,6 @@ func _on_gacha_btn_pressed():
 		
 	print(">> Memulai Proses Gacha...")
 	is_gacha_running = true
-	gacha_btn.disabled = true
 	
 	# Kurangi jatah gacha
 	available_charges -= 1
@@ -80,4 +72,4 @@ func _on_gacha_btn_pressed():
 	print("!!! DAPET ITEM: ", hadiah.to_upper(), " !!!")
 	
 	is_gacha_running = false
-	update_machine_state() # Bakal ngecek otomatis: kalau charge masih ada, balik ke "READY". Kalau habis, balik "IDLE".
+	update_machine_state()

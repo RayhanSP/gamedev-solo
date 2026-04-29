@@ -82,17 +82,3 @@ sprite_frames = SubResource("SpriteFrames_77dry")
 animation = &"ready"
 
 [node name="Timer" type="Timer" parent="." unique_id=1193820832]
-
-[node name="UI_Gacha" type="CanvasLayer" parent="." unique_id=61629327]
-
-[node name="GachaButton" type="Button" parent="UI_Gacha" unique_id=1624177407]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -51.0
-offset_top = -65.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "PULL"
