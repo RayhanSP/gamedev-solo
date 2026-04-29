@@ -3,6 +3,7 @@ extends Node2D
 @onready var time_manager = $TimeManager
 @onready var spawn_point = $SpawnPoint
 @onready var defense_area = $HouseDefenseArea
+@onready var player = $Player
 
 @export var zombie_scene: PackedScene
 @export var game_over_scene: PackedScene
@@ -20,6 +21,31 @@ extends Node2D
 @onready var btn_pause = $HUD/BtnPause
 @onready var vending_machine = $VendingMachine
 
+# === INVENTORY NODES & VARIABLES ===
+@onready var inv_top_slot = $HUD/InventoryUI/TopSlot
+@onready var inv_slot_1 = $HUD/InventoryUI/BottomSlots/Slot1
+@onready var inv_slot_2 = $HUD/InventoryUI/BottomSlots/Slot2
+@onready var inv_slot_3 = $HUD/InventoryUI/BottomSlots/Slot3
+
+@onready var icon_top = $HUD/InventoryUI/TopSlot/Icon
+@onready var icon_1 = $HUD/InventoryUI/BottomSlots/Slot1/Icon
+@onready var icon_2 = $HUD/InventoryUI/BottomSlots/Slot2/Icon
+@onready var icon_3 = $HUD/InventoryUI/BottomSlots/Slot3/Icon
+@onready var inv_selector = $HUD/InventoryUI/Selector
+
+@export var all_ammo_scenes: Array[PackedScene] # Masukkan semua file .tscn item ke sini!
+var ammo_dict = {}
+
+# Textures untuk item (Isi lewat Inspector)
+@export var tex_ban: Texture2D
+@export var tex_metal_gear: Texture2D
+@export var tex_battery: Texture2D
+
+var inventory = ["", "", ""] # 3 Slot kosong
+var is_top_grid_selected = true # Mulai dengan milih Busi
+var selected_bottom_index = 0 # Index 0, 1, atau 2
+var default_item = "item_busi"
+
 # === STATISTIK PERMAINAN ===
 var score: int = 0
 var gacha_count: int = 0
@@ -27,16 +53,12 @@ var total_duration: float = 0.0
 var items_used: Dictionary = {"item_busi": 0, "item_ban": 0, "item_metal_gear": 0, "item_battery": 0}
 var gacha_points_progress: int = 0
 
-# === VARIABEL SISTEM WAKTU ===
+# === VARIABEL SISTEM WAKTU & SPAWNER ===
 var wave_level: int = 1
 var phase_timer: float = 0.0
 var phase_duration: float = 15.0 
-
-# === VARIABEL SPAWNER ===
 var spawn_timer: float = 0.0
 var current_spawn_delay: float = 3.0 
-
-# === VARIABEL ZOMBIE BAR (PENGGANTI HOUSE HP) ===
 var zombies_passed: int = 0
 var max_zombies_allowed: int = 10
 var is_game_over: bool = false
@@ -51,13 +73,21 @@ func _ready():
 	if btn_pause:
 		btn_pause.pressed.connect(_on_pause_pressed)
 	
-	# Set tampilan awal UI
+	# Mapping ammo scenes ke dictionary berdasarkan namanya
+	for scene in all_ammo_scenes:
+		if scene:
+			var scene_name = scene.resource_path.get_file().get_basename()
+			ammo_dict[scene_name] = scene
+	
 	count_label.text = "0 / 10"
 	score_label.text = "0"
 	
 	if bar_textures.size() > 0:
 		zombie_bar.texture = bar_textures[0]
-	warning_symbol.modulate.a = 0.0 # Pastikan awal-awal hilang
+	warning_symbol.modulate.a = 0.0 
+	
+	# Update UI Inventory awal
+	update_inventory_ui()
 
 func _process(delta):
 	if is_game_over: return
@@ -65,7 +95,6 @@ func _process(delta):
 	total_duration += delta
 	phase_timer += delta
 	
-	# Format Waktu ke MM:SS (Menit:Detik)
 	var mins = int(total_duration) / 60
 	var secs = int(total_duration) % 60
 	time_label.text = "%02d:%02d" % [mins, secs]
@@ -80,32 +109,115 @@ func _process(delta):
 		_kalkulasi_delay_spawn() 
 		spawn_zombie_wave()
 
+# ==========================================
+# --- FUNGSI INVENTORY & SELECTOR ---
+# ==========================================
+func _input(event):
+	if is_game_over or get_tree().paused: return
+	
+	if event.is_action_pressed("pause_game"):
+		_on_pause_pressed()
+		
+	# LOGIKA SELECTOR INVENTORY
+	if event.is_action_pressed("ui_up"):
+		is_top_grid_selected = true
+		update_inventory_ui()
+	elif event.is_action_pressed("ui_down"):
+		is_top_grid_selected = false
+		update_inventory_ui()
+	elif event.is_action_pressed("ui_left"):
+		if not is_top_grid_selected:
+			selected_bottom_index = clamp(selected_bottom_index - 1, 0, 2)
+			update_inventory_ui()
+	elif event.is_action_pressed("ui_right"):
+		if not is_top_grid_selected:
+			selected_bottom_index = clamp(selected_bottom_index + 1, 0, 2)
+			update_inventory_ui()
+
+func get_texture_for(item_name: String) -> Texture2D:
+	match item_name:
+		"item_ban": return tex_ban
+		"item_metal_gear": return tex_metal_gear
+		"item_battery": return tex_battery
+	return null
+
+func update_inventory_ui():
+	var icons = [icon_1, icon_2, icon_3]
+	var slots = [inv_slot_1, inv_slot_2, inv_slot_3]
+	
+	# Update gambar item di 3 slot bawah
+	for i in range(3):
+		var item_name = inventory[i]
+		if item_name != "":
+			icons[i].texture = get_texture_for(item_name)
+		else:
+			icons[i].texture = null # Kosongkan gambar kalau gak ada item
+
+# Update posisi Selector Putih
+	var target_node
+	if is_top_grid_selected:
+		target_node = inv_top_slot
+	else:
+		target_node = slots[selected_bottom_index]
+	
+	# --- FIX POSISI SELECTOR OTOMATIS & ANTI ERROR ---
+	# 1. Ambil titik tengah (center) dari slot yang dituju secara global
+	var target_center = target_node.get_global_rect().get_center()
+	
+	# 2. Ambil ukuran selector yang sudah ter-scale secara global, lalu bagi 2
+	var selector_half_size = inv_selector.get_global_rect().size / 2.0
+	
+	# 3. Geser selector agar titik tengahnya pas dengan titik tengah target
+	var tw = create_tween()
+	tw.tween_property(inv_selector, "global_position", target_center - selector_half_size, 0.1)
+	
+	# Beritahu player item apa yang lagi dipegang
+	var selected_item_name = default_item
+	if not is_top_grid_selected:
+		selected_item_name = inventory[selected_bottom_index]
+		
+	if selected_item_name == "" or not ammo_dict.has(selected_item_name):
+		player.set_equipped_item(null) 
+	else:
+		player.set_equipped_item(ammo_dict[selected_item_name])
+
+func receive_gacha_item(item_name: String):
+	# Cari slot kosong dari kiri ke kanan
+	for i in range(inventory.size()):
+		if inventory[i] == "":
+			inventory[i] = item_name
+			update_inventory_ui()
+			return
+	print(">> Inventory Penuh! Item gacha terbuang.")
+
+func consume_current_item(item_name: String):
+	# Catat statistik
+	if items_used.has(item_name): items_used[item_name] += 1
+	else: items_used[item_name] = 1
+	
+	if item_name == default_item:
+		return # Busi itu infinite, gak usah dihapus
+		
+	# Hapus item spesial dari slot bawah kalau barusan dilempar
+	if not is_top_grid_selected:
+		inventory[selected_bottom_index] = ""
+		update_inventory_ui() # Render ulang UI-nya jadi kosong
+# ==========================================
+
 # --- FUNGSI PAUSE ---
 func _on_pause_pressed():
 	if is_game_over: return 
-	
 	get_tree().paused = true 
-	
 	if pause_scene:
 		var ui = pause_scene.instantiate()
 		add_child(ui)
-		
-func _input(event):
-	if event.is_action_pressed("pause_game") and not is_game_over and not get_tree().paused:
-		_on_pause_pressed()
 
 # --- FUNGSI ZOMBIE MASUK RUMAH ---
 func _on_zombie_passed(body):
 	if body.has_method("take_damage"):
 		zombies_passed += 1
-		print(">> GAWAT! Zombie masuk! Total di dalam: ", zombies_passed)
-		
-		# Update label indikator X/10
 		count_label.text = str(zombies_passed) + " / 10"
-		
-		# Panggil fungsi transisi UI funky
 		update_zombie_bar_ui()
-		
 		body.queue_free()
 		
 		if zombies_passed >= max_zombies_allowed:
@@ -113,28 +225,22 @@ func _on_zombie_passed(body):
 
 # --- FUNGSI TRANSISI UI FUNKY & WARNING ---
 func update_zombie_bar_ui():
-	# 1. Ganti Gambar Sprite
 	var index = clamp(zombies_passed, 0, bar_textures.size() - 1)
 	if bar_textures.size() > 0:
 		zombie_bar.texture = bar_textures[index]
 	
-	# 2. Efek Transisi Funky (Squash & Stretch Bounce)
 	zombie_bar.pivot_offset = zombie_bar.size / 2.0 
-	
 	var bar_tween = create_tween()
 	bar_tween.tween_property(zombie_bar, "scale", Vector2(1.2, 0.7), 0.05)
 	bar_tween.tween_property(zombie_bar, "scale", Vector2(0.8, 1.2), 0.1)
 	bar_tween.tween_property(zombie_bar, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
-	# 3. Logika Warning Symbol (Mulai kedut saat zombie >= 6)
 	if zombies_passed >= 6 and not is_warning_active:
 		activate_warning_symbol()
 
 func activate_warning_symbol():
 	is_warning_active = true
-	print("!!! PERINGATAN BAHAYA AKTIF !!!")
-	
-	var warning_tween = create_tween().set_loops() # Looping terus menerus
+	var warning_tween = create_tween().set_loops() 
 	warning_tween.tween_property(warning_symbol, "modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_SINE)
 	warning_tween.tween_property(warning_symbol, "modulate:a", 0.1, 0.25).set_trans(Tween.TRANS_SINE)
 
@@ -142,43 +248,30 @@ func activate_warning_symbol():
 func trigger_game_over():
 	is_game_over = true
 	get_tree().paused = true 
-	
 	if game_over_scene:
 		var ui = game_over_scene.instantiate()
 		add_child(ui)
 		if ui.has_method("set_stats"):
 			ui.set_stats(int(total_duration), score, gacha_count, items_used)
 
-# FUNGSI SCORING & GACHA CHARGE
 func add_score(points): 
 	score += points
 	score_label.text = str(score)
 	
-	# --- ANIMASI FUNKY UNTUK SCORE ---
 	score_label.pivot_offset = score_label.size / 2.0 
 	var score_tween = create_tween()
 	score_tween.tween_property(score_label, "scale", Vector2(1.3, 0.7), 0.05)
 	score_tween.tween_property(score_label, "scale", Vector2(0.8, 1.3), 0.1)
 	score_tween.tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
-	# --- LOGIKA GACHA NON-AKUMULATIF ---
-	# Cuma nambah progress kalau gacha belum ready (charges == 0)
 	if vending_machine and vending_machine.available_charges == 0:
 		gacha_points_progress += points
 		if gacha_points_progress >= 5:
-			# Langsung kasih 1 charge aja, poin sisanya hangus!
 			vending_machine.add_charge(1)
 			gacha_points_progress = 0 
 
 func record_gacha(): 
 	gacha_count += 1
-
-func record_item_use(item_name):
-	# Fungsi ini dipanggil dari player.gd saat ngelempar
-	if items_used.has(item_name): 
-		items_used[item_name] += 1
-	else:
-		items_used[item_name] = 1 # Jaga-jaga kalau ada item baru
 
 # --- FUNGSI SPAWNER & WAKTU ---
 func _kalkulasi_delay_spawn():

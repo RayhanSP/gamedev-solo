@@ -1,9 +1,7 @@
 extends Node2D
 
-@export var ammo_list: Array[PackedScene] 
-var current_ammo_index: int = 0
+var projectile_scene: PackedScene # Sekarang dikendalikan oleh main.gd
 
-@export var projectile_scene: PackedScene
 @export var max_power: float = 1200.0
 @export var min_power: float = 300.0 
 @export var power_charge_rate: float = 900.0
@@ -17,18 +15,16 @@ var current_power: float = 0.0
 var charge_time: float = 0.0 
 var is_charging: bool = false
 
-func _ready():
-	if ammo_list.size() > 0:
-		projectile_scene = ammo_list[0]
-		
+# Fungsi ini dipanggil terus oleh main.gd saat kita ganti seleksi inventory
+func set_equipped_item(scene: PackedScene):
+	projectile_scene = scene
+
 func _process(delta):
-	# UBAHAN KEYBINDING: Pakai "throw_item" (Space)
-	if Input.is_action_pressed("throw_item"):
+	# Hanya bisa nge-charge kalau ada item yang dipilih (projectile_scene gak kosong)
+	if Input.is_action_pressed("throw_item") and projectile_scene:
 		is_charging = true
 		
-		var ammo_name = ""
-		if projectile_scene:
-			ammo_name = projectile_scene.resource_path.get_file().get_basename()
+		var ammo_name = projectile_scene.resource_path.get_file().get_basename()
 		
 		if ammo_name == "item_metal_gear":
 			current_power = 600.0 
@@ -40,7 +36,6 @@ func _process(delta):
 			update_trajectory()
 			line_2d.show()
 
-	# UBAHAN KEYBINDING: Pakai "throw_item" (Space)
 	if Input.is_action_just_released("throw_item") and is_charging:
 		anim.play("throw")
 		throw_item()
@@ -50,9 +45,6 @@ func _process(delta):
 		line_2d.hide()
 		await get_tree().create_timer(0.5).timeout
 		anim.play("idle")
-
-	if Input.is_action_just_pressed("ui_left"):
-		cycle_ammo()
 
 func update_trajectory():
 	line_2d.clear_points()
@@ -73,10 +65,10 @@ func throw_item():
 		
 		var ammo_name = projectile_scene.resource_path.get_file().get_basename()
 		
-		# --- TRACKING ITEM DIGUNAKAN KE MAIN SCENE ---
+		# --- LAPOR KE MAIN SCENE BUAT KONSUMSI ITEM ---
 		var main_scene = get_tree().current_scene
-		if main_scene.has_method("record_item_use"):
-			main_scene.record_item_use(ammo_name)
+		if main_scene.has_method("consume_current_item"):
+			main_scene.consume_current_item(ammo_name)
 		# ---------------------------------------------
 		
 		if ammo_name == "item_metal_gear":
@@ -88,10 +80,3 @@ func throw_item():
 			projectile.global_position = throw_point.global_position
 			var direction = Vector2.RIGHT.rotated(deg_to_rad(throw_angle))
 			projectile.apply_central_impulse(direction * current_power)
-
-func cycle_ammo():
-	if ammo_list.is_empty(): return
-	current_ammo_index = (current_ammo_index + 1) % ammo_list.size()
-	projectile_scene = ammo_list[current_ammo_index]
-	var ammo_name = projectile_scene.resource_path.get_file().get_basename()
-	print(">> Equip Amunisi: ", ammo_name.to_upper())
