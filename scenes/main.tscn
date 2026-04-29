@@ -7,42 +7,27 @@
 [ext_resource type="Script" uid="uid://dx3r5wa5sm0l8" path="res://scripts/player.gd" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://byfbdlvbhpvsa" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/2.png" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://5j762164a1pf" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/3.png" id="3_85g3d"]
-[ext_resource type="PackedScene" uid="uid://ctv2v3hwntkhj" path="res://scenes/item_busi.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://c03n45erp2j0q" path="res://scenes/game_over_ui.tscn" id="3_yq6so"]
-[ext_resource type="Texture2D" uid="uid://tjywf44pikmt" path="res://assets/health_bar_house/houseHealthBar.png" id="4_5poiv"]
-[ext_resource type="PackedScene" uid="uid://n28japk1ximi" path="res://scenes/pause_ui.tscn" id="4_chjal"]
 [ext_resource type="Texture2D" uid="uid://cdhb0xc3ltnyd" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/1.png" id="4_jbj1t"]
-[ext_resource type="PackedScene" uid="uid://ci3ycmj402dn8" path="res://scenes/zombie.tscn" id="4_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://dmj4peua414v5" path="res://assets/health_bar_house/houseHealthBar1.png" id="5_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://b2sjvyy5hnnyx" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/2.png" id="5_muem4"]
-[ext_resource type="Texture2D" uid="uid://dsqu625asuc6d" path="res://assets/health_bar_house/houseHealthBar2.png" id="6_chjal"]
 [ext_resource type="Texture2D" uid="uid://cqvcxc1kasvwh" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/3.png" id="6_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://bfxglc767uavn" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/1.png" id="7_0ld40"]
-[ext_resource type="Texture2D" uid="uid://dmqya6d382ayu" path="res://assets/health_bar_house/houseHealthBar3.png" id="7_cjqg0"]
 [ext_resource type="Texture2D" uid="uid://b0b7lye4c1743" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/2.png" id="8_gqmmt"]
-[ext_resource type="Texture2D" uid="uid://cfc3umvt2djfk" path="res://assets/health_bar_house/houseHealthBar4.png" id="8_vchkt"]
 [ext_resource type="Texture2D" uid="uid://dtniftqrripqt" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/1.png" id="8_yc10j"]
 [ext_resource type="Texture2D" uid="uid://dsyfrgyyhkhiv" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/2.png" id="9_jscy8"]
-[ext_resource type="Texture2D" uid="uid://brn5xjgpdtoh8" path="res://assets/health_bar_house/houseHealthBar5.png" id="9_txyw0"]
 [ext_resource type="Texture2D" uid="uid://cucald44p422d" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/3.png" id="9_yc10j"]
 [ext_resource type="Texture2D" uid="uid://lfgwv6k1d2xq" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/4.png" id="10_jscy8"]
-[ext_resource type="Texture2D" uid="uid://dvvw4yampw108" path="res://assets/health_bar_house/houseHealthBar6.png" id="10_vc5cj"]
-[ext_resource type="Texture2D" uid="uid://b5abxteorwsbc" path="res://assets/health_bar_house/houseHealthBar7.png" id="11_nvyfr"]
 [ext_resource type="Texture2D" uid="uid://7bbarwmvuft5" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/5.png" id="11_pm3ni"]
-[ext_resource type="Texture2D" uid="uid://c07q7h56megep" path="res://assets/health_bar_house/houseHealthBar8.png" id="12_ty1g6"]
 [ext_resource type="Texture2D" uid="uid://cyy3gt7nr7nns" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/6.png" id="12_y6deb"]
-[ext_resource type="Texture2D" uid="uid://2cr06088jkh3" path="res://assets/health_bar_house/houseHealthBar9.png" id="13_j2jfr"]
-[ext_resource type="Texture2D" uid="uid://s3mgcac4cv2t" path="res://assets/health_bar_house/houseHealthBar10.png" id="14_bjg73"]
 [ext_resource type="Texture2D" uid="uid://bb62c42rb6tiv" path="res://assets/background/house_day.png" id="16_pm3ni"]
 [ext_resource type="Texture2D" uid="uid://y4arpffl8mom" path="res://assets/background/house_evening.png" id="17_y6deb"]
 [ext_resource type="Texture2D" uid="uid://cca6gnyfnuobm" path="res://assets/background/house_night.png" id="18_og1vs"]
 [ext_resource type="Texture2D" uid="uid://c3hdhg2mnmhrt" path="res://assets/background/house_midnight.png" id="19_2wyq8"]
-[ext_resource type="PackedScene" uid="uid://b7ojs4mc60y5j" path="res://scenes/item_metal_gear.tscn" id="24_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://cxt0ibblim5iq" path="res://scenes/vending_machine.tscn" id="24_y6deb"]
-[ext_resource type="PackedScene" uid="uid://cxxs7pcsc4ei4" path="res://scenes/item_ban.tscn" id="25_og1vs"]
-[ext_resource type="PackedScene" uid="uid://blfe2lt2lq7co" path="res://scenes/item_battery.tscn" id="25_vxglm"]
+[ext_resource type="Texture2D" uid="uid://cur10fs7ibhaf" path="res://assets/sprites/itemSelector.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://cburkuog7t6cu" path="res://assets/sprites/warningSymbol.png" id="30_fv21b"]
 [ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="41_2cjbq"]
+[ext_resource type="Texture2D" uid="uid://v0du5vjyexk5" path="res://assets/sprites/itemGrid.png" id="44_vchkt"]
+[ext_resource type="Texture2D" uid="uid://8g4uu2xyfb7e" path="res://assets/sprites/sparkPlug.png" id="45_txyw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(29.550388, 17.552002)
@@ -86,10 +71,6 @@ anti_aliasing = false
 
 [node name="Main" type="Node2D" unique_id=159988853]
 script = ExtResource("1_2f3dj")
-zombie_scene = ExtResource("4_jyhfs")
-game_over_scene = ExtResource("3_yq6so")
-pause_scene = ExtResource("4_chjal")
-bar_textures = Array[Texture2D]([ExtResource("4_5poiv"), ExtResource("5_2cjbq"), ExtResource("6_chjal"), ExtResource("7_cjqg0"), ExtResource("8_vchkt"), ExtResource("9_txyw0"), ExtResource("10_vc5cj"), ExtResource("11_nvyfr"), ExtResource("12_ty1g6"), ExtResource("13_j2jfr"), ExtResource("14_bjg73")])
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=822555748]
 
@@ -225,8 +206,6 @@ shape = SubResource("RectangleShape2D_sgp6g")
 position = Vector2(118, 129)
 scale = Vector2(1.25, 1.25)
 script = ExtResource("2_sugp2")
-ammo_list = Array[PackedScene]([ExtResource("3_jyhfs"), ExtResource("25_og1vs"), ExtResource("24_2wyq8"), ExtResource("25_vxglm")])
-projectile_scene = ExtResource("3_jyhfs")
 
 [node name="VendingMachine" parent="." unique_id=1202862248 instance=ExtResource("24_y6deb")]
 z_index = 1
@@ -317,3 +296,122 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_chjal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cjqg0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vchkt")
 text = "II"
+
+[node name="InventoryUI" type="Control" parent="HUD" unique_id=1605713698]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.625
+offset_top = 30.83
+offset_right = 60.625
+offset_bottom = 98.965
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(60.625, 34.067)
+
+[node name="TopSlot" type="TextureRect" parent="HUD/InventoryUI" unique_id=1047445339]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_right = 16.0
+offset_bottom = 32.0
+grow_horizontal = 2
+texture = ExtResource("44_vchkt")
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/TopSlot" unique_id=920862625]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_txyw0")
+
+[node name="BottomSlots" type="HBoxContainer" parent="HUD/InventoryUI" unique_id=500488778]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -40.0
+offset_right = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -8
+
+[node name="Slot1" type="TextureRect" parent="HUD/InventoryUI/BottomSlots" unique_id=183051875]
+layout_mode = 2
+texture = ExtResource("44_vchkt")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/BottomSlots/Slot1" unique_id=897536806]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot2" type="TextureRect" parent="HUD/InventoryUI/BottomSlots" unique_id=936612408]
+layout_mode = 2
+texture = ExtResource("44_vchkt")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/BottomSlots/Slot2" unique_id=671172020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot3" type="TextureRect" parent="HUD/InventoryUI/BottomSlots" unique_id=1004671909]
+layout_mode = 2
+texture = ExtResource("44_vchkt")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/BottomSlots/Slot3" unique_id=570542950]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Selector" type="TextureRect" parent="HUD/InventoryUI" unique_id=1125567397]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("28_2f3dj")
