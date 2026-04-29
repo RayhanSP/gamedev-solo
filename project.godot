@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Solo Game Project"
+config/description="Submission for 2026 CSUI Individual Game Jam"
+config/version="1.0a"
 run/main_scene="uid://v21lyoywbjtg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TransitionManager="*uid://bs5fbk8p7noyp"
 
 [display]
 

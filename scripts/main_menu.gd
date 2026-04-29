@@ -12,7 +12,7 @@ func _ready():
 
 func _on_play_pressed():
 	# Langsung pindah ke scene game utama!
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	TransitionManager.change_scene("res://scenes/main.tscn")
 
 func _on_tutorial_pressed():
 	print(">> Masuk Tutorial (Dummy)")
