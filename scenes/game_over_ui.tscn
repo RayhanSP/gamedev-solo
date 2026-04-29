@@ -70,7 +70,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_lk38d")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 33
 text = "GAME OVER"
 
 [node name="StatsLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1589368592]
@@ -78,7 +78,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_lk38d")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "TIME SPENT: uhhh"
 
 [node name="BtnReplay" type="Button" parent="CenterContainer/VBoxContainer" unique_id=361209897]
