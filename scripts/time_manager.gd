@@ -150,6 +150,7 @@ func animate_clouds_popout(layer):
 			cloud_tween.tween_property(child, "position:y", base_y + 100, 0.6).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 			cloud_tween.tween_property(child, "modulate:a", 0.0, 0.6)
 
-func _input(event):
-	if event.is_action_pressed("ui_right"):
-		transition_to_next()
+# DEBUG ONLY
+#func _input(event):
+	#if event.is_action_pressed("ui_right"):
+		#transition_to_next()
