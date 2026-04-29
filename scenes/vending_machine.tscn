@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tqtj2h1wb8yq" path="res://scripts/vending_machine.gd" id="1_um5cl"]
 [ext_resource type="Texture2D" uid="uid://dewd5wk3jwjt2" path="res://assets/vending_machine_sprites/vendingMachineSpitReward.png" id="2_ruqul"]
+[ext_resource type="Texture2D" uid="uid://cbp62h0w4thif" path="res://assets/vending_machine_sprites/vendingMachineBase.png" id="3_bqfkx"]
 [ext_resource type="Texture2D" uid="uid://c1cio3bhgwo5x" path="res://assets/vending_machine_sprites/vendingMachineAnim1.png" id="3_t0d2s"]
 [ext_resource type="Texture2D" uid="uid://baj7hpcrfcdge" path="res://assets/vending_machine_sprites/vendingMachineAnim2.png" id="4_m1vee"]
 [ext_resource type="Texture2D" uid="uid://cqhd2lk7bxgv0" path="res://assets/vending_machine_sprites/vendingMachineAnim3.png" id="5_s5cyj"]
@@ -11,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://0kpx5v6yjxit" path="res://assets/vending_machine_sprites/vendingMachineAnim7.png" id="9_43xwo"]
 [ext_resource type="Texture2D" uid="uid://cl78m30fnjjbk" path="res://assets/vending_machine_sprites/vendingMachineSpinned.png" id="10_6dx7k"]
 [ext_resource type="Texture2D" uid="uid://be33ug1nb65ys" path="res://assets/vending_machine_sprites/vendingMachineAnimFinal.png" id="11_bf3ui"]
+[ext_resource type="Texture2D" uid="uid://03sd4tm7m76c" path="res://assets/vending_machine_sprites/vendingMachineSpinned2.png" id="11_s5cyj"]
 [ext_resource type="Texture2D" uid="uid://e4jbvd11c25l" path="res://assets/vending_machine_sprites/vendingMachineReady.png" id="11_t0d2s"]
+[ext_resource type="Texture2D" uid="uid://cem2oaky1sm12" path="res://assets/vending_machine_sprites/vendingMachineSpinned3.png" id="12_bqfkx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_77dry"]
 animations = [{
@@ -24,6 +27,9 @@ animations = [{
 "speed": 3.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bqfkx")
+}, {
 "duration": 1.0,
 "texture": ExtResource("3_t0d2s")
 }, {
@@ -44,6 +50,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_43xwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bqfkx")
 }],
 "loop": false,
 "name": &"idle",
@@ -52,10 +61,16 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("10_6dx7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_s5cyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bqfkx")
 }],
 "loop": false,
 "name": &"pull_handle",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -79,6 +94,6 @@ script = ExtResource("1_um5cl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1503941758]
 sprite_frames = SubResource("SpriteFrames_77dry")
-animation = &"ready"
+animation = &"text_final"
 
 [node name="Timer" type="Timer" parent="." unique_id=1193820832]
