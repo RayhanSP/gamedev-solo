@@ -6,6 +6,7 @@ extends Node2D
 
 @export var zombie_scene: PackedScene
 @export var game_over_scene: PackedScene
+@export var pause_scene: PackedScene
 
 # === UI ZOMBIE BAR & WARNING ===
 @onready var zombie_bar = $HUD/ZombieBar
@@ -16,7 +17,7 @@ extends Node2D
 @onready var count_label = $HUD/ZombieBar/CountLabel
 @onready var time_label = $HUD/TimeLabel
 @onready var score_label = $HUD/ScoreLabel
-#@onready var btn_pause = $HUD/BtnPause
+@onready var btn_pause = $HUD/BtnPause
 @onready var vending_machine = $VendingMachine
 
 # === STATISTIK PERMAINAN ===
@@ -47,7 +48,8 @@ func _ready():
 	_kalkulasi_delay_spawn()
 	
 	defense_area.body_entered.connect(_on_zombie_passed)
-	#btn_pause.pressed.connect(_on_pause_pressed)
+	if btn_pause:
+		btn_pause.pressed.connect(_on_pause_pressed)
 	
 	# Set tampilan awal UI
 	count_label.text = "0 / 10"
@@ -79,12 +81,18 @@ func _process(delta):
 		spawn_zombie_wave()
 
 # --- FUNGSI PAUSE ---
-#func _on_pause_pressed():
-	#get_tree().paused = !get_tree().paused
-	#if get_tree().paused:
-		#btn_pause.text = "RESUME"
-	#else:
-		#btn_pause.text = "PAUSE"
+func _on_pause_pressed():
+	if is_game_over: return 
+	
+	get_tree().paused = true 
+	
+	if pause_scene:
+		var ui = pause_scene.instantiate()
+		add_child(ui)
+		
+func _input(event):
+	if event.is_action_pressed("pause_game") and not is_game_over and not get_tree().paused:
+		_on_pause_pressed()
 
 # --- FUNGSI ZOMBIE MASUK RUMAH ---
 func _on_zombie_passed(body):

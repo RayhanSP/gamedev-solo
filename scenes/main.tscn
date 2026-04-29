@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ctv2v3hwntkhj" path="res://scenes/item_busi.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c03n45erp2j0q" path="res://scenes/game_over_ui.tscn" id="3_yq6so"]
 [ext_resource type="Texture2D" uid="uid://tjywf44pikmt" path="res://assets/health_bar_house/houseHealthBar.png" id="4_5poiv"]
+[ext_resource type="PackedScene" uid="uid://n28japk1ximi" path="res://scenes/pause_ui.tscn" id="4_chjal"]
 [ext_resource type="Texture2D" uid="uid://cdhb0xc3ltnyd" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/1.png" id="4_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://ci3ycmj402dn8" path="res://scenes/zombie.tscn" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dmj4peua414v5" path="res://assets/health_bar_house/houseHealthBar1.png" id="5_2cjbq"]
@@ -48,10 +49,46 @@ size = Vector2(29.550388, 17.552002)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2f3dj"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cjbq"]
+bg_color = Color(0.84, 0.67200005, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chjal"]
+content_margin_top = 4.0
+bg_color = Color(0.19, 0.15200001, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjqg0"]
+bg_color = Color(0.84, 0.7644, 0.46199998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vchkt"]
+
 [node name="Main" type="Node2D" unique_id=159988853]
 script = ExtResource("1_2f3dj")
 zombie_scene = ExtResource("4_jyhfs")
 game_over_scene = ExtResource("3_yq6so")
+pause_scene = ExtResource("4_chjal")
 bar_textures = Array[Texture2D]([ExtResource("4_5poiv"), ExtResource("5_2cjbq"), ExtResource("6_chjal"), ExtResource("7_cjqg0"), ExtResource("8_vchkt"), ExtResource("9_txyw0"), ExtResource("10_vc5cj"), ExtResource("11_nvyfr"), ExtResource("12_ty1g6"), ExtResource("13_j2jfr"), ExtResource("14_bjg73")])
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=822555748]
@@ -265,7 +302,18 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("41_2cjbq")
 text = "0"
 
-[node name="TextureButton" type="TextureButton" parent="HUD" unique_id=59147869]
-process_mode = 3
-offset_right = 40.0
+[node name="BtnPause" type="Button" parent="HUD" unique_id=399731679]
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 33.0
 offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("41_2cjbq")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cjbq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_chjal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cjqg0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vchkt")
+text = "II"

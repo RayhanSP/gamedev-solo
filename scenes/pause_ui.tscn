@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://n28japk1ximi"]
+
+[ext_resource type="Script" uid="uid://ckqskvl7cm5nc" path="res://scripts/pause_ui.gd" id="1_vcehk"]
+[ext_resource type="Shader" uid="uid://dlgudsyuafqf6" path="res://shaders/game_over_ui.gdshader" id="1_ypbrs"]
+[ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="2_vcehk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3egln"]
+shader = ExtResource("1_ypbrs")
+shader_parameter/blur_amount = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4j456"]
+bg_color = Color(0.84, 0.67200005, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vm74"]
+content_margin_top = 4.0
+bg_color = Color(0.19, 0.15200001, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utk7g"]
+bg_color = Color(0.84, 0.7644, 0.46199998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ynu8c"]
+
+[node name="PauseUI" type="CanvasLayer" unique_id=1982318070]
+process_mode = 3
+script = ExtResource("1_vcehk")
+
+[node name="BlurEffect" type="ColorRect" parent="." unique_id=554218504]
+material = SubResource("ShaderMaterial_3egln")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1918094465]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1350925370]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2083358383]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_vcehk")
+theme_override_font_sizes/font_size = 29
+text = "paused"
+
+[node name="BtnResume" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1502586585]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_vcehk")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_4j456")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0vm74")
+theme_override_styles/hover = SubResource("StyleBoxFlat_utk7g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ynu8c")
+text = "resume"
+icon_alignment = 1
+
+[node name="BtnMenu" type="Button" parent="CenterContainer/VBoxContainer" unique_id=983793300]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_vcehk")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_4j456")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0vm74")
+theme_override_styles/hover = SubResource("StyleBoxFlat_utk7g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ynu8c")
+text = "back to menu"
+icon_alignment = 1
