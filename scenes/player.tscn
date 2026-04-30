@@ -34,7 +34,3 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_qlg0r")
 animation = &"throw"
 autoplay = "idle"
-
-[node name="Line2D" type="Line2D" parent="." unique_id=1307994125]
-width = 3.0
-default_color = Color(1, 1, 0.627451, 0.77254903)

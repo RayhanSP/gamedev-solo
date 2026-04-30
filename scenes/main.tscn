@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://cur10fs7ibhaf" path="res://assets/sprites/itemSelector.png" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://cburkuog7t6cu" path="res://assets/sprites/warningSymbol.png" id="30_fv21b"]
 [ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="41_2cjbq"]
+[ext_resource type="Texture2D" uid="uid://hx423fubc8sl" path="res://assets/sprites/aimLineDotV2.png" id="44_j2jfr"]
 [ext_resource type="Texture2D" uid="uid://v0du5vjyexk5" path="res://assets/sprites/itemGrid.png" id="44_vchkt"]
 [ext_resource type="Texture2D" uid="uid://8g4uu2xyfb7e" path="res://assets/sprites/sparkPlug.png" id="45_txyw0"]
 
@@ -235,6 +236,7 @@ shape = SubResource("RectangleShape2D_sgp6g")
 position = Vector2(118, 129)
 scale = Vector2(1.25, 1.25)
 script = ExtResource("2_sugp2")
+dot_texture = ExtResource("44_j2jfr")
 
 [node name="VendingMachine" parent="." unique_id=1202862248 instance=ExtResource("24_y6deb")]
 z_index = 1
