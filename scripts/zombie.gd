@@ -63,11 +63,45 @@ func apply_knockback(strength: float):
 	knockback_velocity.x = strength
 
 func die():
-	# FUNGSI BARU: Tambah skor saat zombie mati
 	var main_scene = get_tree().current_scene
 	if main_scene.has_method("add_score"):
 		main_scene.add_score(1)
 		
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+		
+	var particles = CPUParticles2D.new()
+	particles.emitting = true
+	particles.amount = 15
+	particles.lifetime = 0.6
+	particles.one_shot = true
+	particles.explosiveness = 0.9
+	particles.direction = Vector2(0, 1) 
+	particles.spread = 45.0
+	particles.gravity = Vector2(0, 300)
+	particles.initial_velocity_min = 40
+	particles.initial_velocity_max = 90
+	particles.scale_amount_min = 2.0
+	particles.scale_amount_max = 4.0
+	particles.color = Color("589174") # REVISI: Hex Color Baru
+	
+	main_scene.add_child(particles)
+	particles.global_position = global_position
+	
+	# REVISI: Efek Mati Withered Thanos
+	if anim:
+		anim.clip_children = CanvasItem.CLIP_CHILDREN_ONLY
+		var clipper = ColorRect.new()
+		clipper.color = Color.WHITE
+		clipper.position = Vector2(-32, -32) 
+		clipper.size = Vector2(64, 64)
+		anim.add_child(clipper)
+		
+		var tw = create_tween()
+		tw.tween_property(clipper, "position:y", 32.0, 0.6)
+		
+	await get_tree().create_timer(0.7).timeout
+	particles.queue_free()
 	queue_free()
 	
 # FUNGSI BARU: Efek Kesetrum (Slow + Gosong)

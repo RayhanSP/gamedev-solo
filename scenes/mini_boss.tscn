@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cc167iauyn4ju"]
+
+[ext_resource type="Script" uid="uid://bb32qhdmneuaa" path="res://scripts/mini_boss.gd" id="1_2lnyf"]
+[ext_resource type="Texture2D" uid="uid://cej6ceitttt35" path="res://assets/sprites/miniBossCharge.png" id="2_itdih"]
+[ext_resource type="Texture2D" uid="uid://o3e3kbyrq6q8" path="res://assets/sprites/miniBossStunned.png" id="3_4od26"]
+[ext_resource type="Texture2D" uid="uid://ckhcd6del27mi" path="res://assets/sprites/miniBossWalk2.png" id="4_a2fu5"]
+[ext_resource type="Texture2D" uid="uid://b2duwfu0ptscl" path="res://assets/sprites/miniBossWalk1.png" id="5_yfea8"]
+[ext_resource type="Texture2D" uid="uid://svwlw4es0xpj" path="res://assets/sprites/miniBossWalk3.png" id="6_rvgg1"]
+[ext_resource type="Texture2D" uid="uid://f7laf28i845o" path="res://assets/sprites/miniBossWindUp.png" id="7_fb20r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68fho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_itdih")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4od26")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a2fu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yfea8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rvgg1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_fb20r")
+}],
+"loop": true,
+"name": &"wind_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lnyf"]
+size = Vector2(50, 62)
+
+[node name="MiniBoss" type="CharacterBody2D" unique_id=693301239 groups=["mini_boss"]]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+script = ExtResource("1_2lnyf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=919666564]
+sprite_frames = SubResource("SpriteFrames_68fho")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1367784016]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_2lnyf")

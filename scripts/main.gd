@@ -6,15 +6,14 @@ extends Node2D
 @onready var player = $Player
 
 @export var zombie_scene: PackedScene
+@export var mini_boss_scene: PackedScene 
 @export var game_over_scene: PackedScene
 @export var pause_scene: PackedScene
 
-# === UI ZOMBIE BAR & WARNING ===
 @onready var zombie_bar = $HUD/ZombieBar
 @onready var warning_symbol = $HUD/WarningSymbol
 @export var bar_textures: Array[Texture2D] 
 
-# === HUD TAMBAHAN & GACHA ===
 @onready var hud = $HUD
 @onready var count_label = $HUD/ZombieBar/CountLabel
 @onready var time_label = $HUD/TimeLabel
@@ -22,7 +21,6 @@ extends Node2D
 @onready var btn_pause = $HUD/BtnPause
 @onready var vending_machine = $VendingMachine
 
-# === INVENTORY NODES & VARIABLES ===
 @onready var inv_top_slot = $HUD/InventoryUI/TopSlot
 @onready var inv_slot_1 = $HUD/InventoryUI/BottomSlots/Slot1
 @onready var inv_slot_2 = $HUD/InventoryUI/BottomSlots/Slot2
@@ -35,7 +33,6 @@ extends Node2D
 @onready var inv_selector = $HUD/InventoryUI/Selector
 @onready var pull_ready_label = $HUD/InventoryUI/PullReadyLabel 
 
-# === WARNING LABEL (NEW) ===
 @onready var warning_label = $HUD/WarningLabel
 var warning_base_y: float
 var warning_tween: Tween
@@ -52,14 +49,12 @@ var is_top_grid_selected = true
 var selected_bottom_index = 0 
 var default_item = "item_busi"
 
-# === STATISTIK PERMAINAN ===
 var score: int = 0
 var gacha_count: int = 0
 var total_duration: float = 0.0
 var items_used: Dictionary = {"item_busi": 0, "item_ban": 0, "item_metal_gear": 0, "item_battery": 0}
 var gacha_points_progress: int = 0
 
-# === VARIABEL SISTEM WAKTU & SPAWNER ===
 var wave_level: int = 1
 var phase_timer: float = 0.0
 var phase_duration: float = 15.0 
@@ -69,6 +64,10 @@ var zombies_passed: int = 0
 var max_zombies_allowed: int = 10
 var is_game_over: bool = false
 var is_warning_active: bool = false
+
+var is_midnight_mode: bool = false
+var night_cycles_passed: int = 0
+var target_night_for_boss: int = 2 # Boss akan muncul di malam ke-2
 
 func _ready():
 	randomize()
@@ -90,12 +89,10 @@ func _ready():
 		zombie_bar.texture = bar_textures[0]
 	warning_symbol.modulate.a = 0.0 
 	
-	# Simpan posisi awal Warning Label
 	if warning_label:
 		warning_base_y = warning_label.position.y
 		warning_label.visible = false
 	
-	# === ANIMASI FLOATING "PULL READY" ===
 	if pull_ready_label:
 		var base_y = pull_ready_label.position.y
 		var float_tween = create_tween().set_loops()
@@ -106,17 +103,19 @@ func _ready():
 
 func _process(delta):
 	if is_game_over: return
-		
+
+	# 1. Timer Angka (Label) SELALU BERJALAN walau lagi Midnight Mode
 	total_duration += delta
-	phase_timer += delta
-	
 	var mins = int(total_duration) / 60
 	var secs = int(total_duration) % 60
 	time_label.text = "%02d:%02d" % [mins, secs]
 	
-	if phase_timer >= phase_duration:
-		phase_timer = 0.0
-		advance_phase()
+	# 2. Phase Waktu (Pergantian Langit/Siklus) TERHENTI saat Midnight Mode
+	if not is_midnight_mode:
+		phase_timer += delta
+		if phase_timer >= phase_duration:
+			phase_timer = 0.0
+			advance_phase()
 	
 	spawn_timer += delta
 	if spawn_timer >= current_spawn_delay:
@@ -126,6 +125,50 @@ func _process(delta):
 
 	if pull_ready_label and vending_machine:
 		pull_ready_label.visible = (vending_machine.available_charges > 0)
+
+# ==========================================
+# --- MIDNIGHT MODE LOGIC (REVISI TRIGGER) ---
+# ==========================================
+func advance_phase():
+	wave_level += 1
+	
+	if time_manager and time_manager.has_method("transition_to_next"):
+		time_manager.transition_to_next()
+		
+		# Cek apakah pergantian waktu sekarang adalah malam ("night")
+		if time_manager.current_time == "night":
+			night_cycles_passed += 1
+			if night_cycles_passed >= target_night_for_boss:
+				trigger_midnight_mode()
+
+func trigger_midnight_mode():
+	is_midnight_mode = true
+	current_spawn_delay += 5.0
+	
+	# Paksa scene jadi Midnight
+	if time_manager and time_manager.has_method("force_midnight"):
+		time_manager.force_midnight()
+	
+	await get_tree().create_timer(3.0).timeout
+	if mini_boss_scene and not is_game_over:
+		var boss = mini_boss_scene.instantiate()
+		add_child(boss)
+		boss.global_position = spawn_point.global_position
+
+func on_boss_died():
+	is_midnight_mode = false
+	
+	# Target malam berikutnya diacak
+	night_cycles_passed = 0
+	target_night_for_boss = randi_range(2, 4)
+	
+	if time_manager and time_manager.has_method("end_midnight"):
+		time_manager.end_midnight()
+		
+	# --- FIX SPAWNER MACET ---
+	# Reset timer dan paksa hitung ulang delay normal detik itu juga!
+	spawn_timer = 0.0
+	_kalkulasi_delay_spawn()
 
 # ==========================================
 # --- FUNGSI INVENTORY & SELECTOR ---
@@ -210,11 +253,9 @@ func update_inventory_ui():
 func is_inventory_full() -> bool:
 	return not ("" in inventory)
 
-# --- REVISI: EFEK TEKS MELAYANG PAKAI NODE MANUAL ---
 func show_floating_text(msg: String):
 	if not warning_label: return
 	
-	# Hentikan animasi sebelumnya kalau player nge-spam tombol
 	if warning_tween and warning_tween.is_valid():
 		warning_tween.kill()
 		
@@ -224,10 +265,8 @@ func show_floating_text(msg: String):
 	warning_label.modulate.a = 1.0
 	
 	warning_tween = create_tween().set_parallel(true)
-	# Teks naik 40 pixel dari posisi aslinya
 	warning_tween.tween_property(warning_label, "position:y", warning_base_y - 40, 1.5).set_ease(Tween.EASE_OUT)
 	warning_tween.tween_property(warning_label, "modulate:a", 0.0, 1.5).set_ease(Tween.EASE_IN)
-	# Sembunyikan node saat animasi selesai
 	warning_tween.chain().tween_property(warning_label, "visible", false, 0.0)
 
 func receive_gacha_item(item_name: String):
@@ -250,7 +289,7 @@ func consume_current_item(item_name: String):
 		update_inventory_ui() 
 
 # ==========================================
-# --- SISANYA TETAP SAMA ---
+# --- FUNGSI CORE LAINNYA ---
 # ==========================================
 func _on_pause_pressed():
 	if is_game_over: return 
@@ -261,6 +300,12 @@ func _on_pause_pressed():
 
 func _on_zombie_passed(body):
 	if body.has_method("take_damage"):
+		if body.get("is_boss") == true:
+			print(">> GAME OVER INSTAN! BOS MASUK!")
+			body.queue_free() 
+			trigger_game_over()
+			return
+			
 		zombies_passed += 1
 		count_label.text = str(zombies_passed) + " / 10"
 		update_zombie_bar_ui()
@@ -291,12 +336,21 @@ func activate_warning_symbol():
 
 func trigger_game_over():
 	is_game_over = true
-	get_tree().paused = true 
+	
+	# REVISI: Munculin Scene DULU, baru pause tree-nya
 	if game_over_scene:
 		var ui = game_over_scene.instantiate()
 		add_child(ui)
+		
+		# Set node UI ini ke mode ALWAYS biar tetep gerak walau game pause
+		ui.process_mode = Node.PROCESS_MODE_ALWAYS 
+		
 		if ui.has_method("set_stats"):
 			ui.set_stats(int(total_duration), score, gacha_count, items_used)
+			
+	# Jeda sedikit banget (satu frame) baru beneran pause fisik game
+	await get_tree().process_frame
+	get_tree().paused = true 
 
 func add_score(points): 
 	score += points
@@ -318,16 +372,15 @@ func record_gacha():
 	gacha_count += 1
 
 func _kalkulasi_delay_spawn():
-	var base_delay = max(1.5, 3.0 - (wave_level * 0.2))
-	current_spawn_delay = base_delay + randf_range(-0.3, 0.5)
-
-func advance_phase():
-	wave_level += 1
-	if time_manager and time_manager.has_method("transition_to_next"):
-		time_manager.transition_to_next()
+	if is_midnight_mode:
+		current_spawn_delay = 999.0 
+	else:
+		var base_delay = max(1.5, 3.0 - (wave_level * 0.2))
+		current_spawn_delay = base_delay + randf_range(-0.3, 0.5)
 
 func spawn_zombie_wave():
-	if not zombie_scene: return
+	if not zombie_scene or is_midnight_mode: return
+	
 	var max_zombies = 1 + int((wave_level - 1) / 2.0)
 	var zombies_to_spawn = randi_range(1, max_zombies) 
 	for i in range(zombies_to_spawn):

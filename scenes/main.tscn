@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://byfbdlvbhpvsa" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/2.png" id="2_tipki"]
 [ext_resource type="PackedScene" uid="uid://ci3ycmj402dn8" path="res://scenes/zombie.tscn" id="2_ty1g6"]
 [ext_resource type="Texture2D" uid="uid://5j762164a1pf" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/3.png" id="3_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cc167iauyn4ju" path="res://scenes/mini_boss.tscn" id="3_bjg73"]
 [ext_resource type="PackedScene" uid="uid://c03n45erp2j0q" path="res://scenes/game_over_ui.tscn" id="3_j2jfr"]
 [ext_resource type="PackedScene" uid="uid://n28japk1ximi" path="res://scenes/pause_ui.tscn" id="4_bjg73"]
 [ext_resource type="Texture2D" uid="uid://cdhb0xc3ltnyd" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/1.png" id="4_jbj1t"]
@@ -94,6 +95,7 @@ anti_aliasing = false
 [node name="Main" type="Node2D" unique_id=159988853]
 script = ExtResource("1_2f3dj")
 zombie_scene = ExtResource("2_ty1g6")
+mini_boss_scene = ExtResource("3_bjg73")
 game_over_scene = ExtResource("3_j2jfr")
 pause_scene = ExtResource("4_bjg73")
 bar_textures = Array[Texture2D]([ExtResource("5_bu4jf"), ExtResource("6_o7ddy"), ExtResource("7_0loja"), ExtResource("8_ids8r"), ExtResource("9_dnhof"), ExtResource("10_1v6qk"), ExtResource("11_augu2"), ExtResource("12_tm6hj"), ExtResource("13_kf5aa"), ExtResource("14_t5ykj"), ExtResource("15_e755i")])
@@ -252,6 +254,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HouseDefenseArea" unique_id=241871131]
+position = Vector2(-5.774784, 0)
 scale = Vector2(1.185, 1.185)
 shape = SubResource("RectangleShape2D_2f3dj")
 
