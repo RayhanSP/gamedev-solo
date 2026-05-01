@@ -99,7 +99,7 @@ func _process(delta):
 		total_duration += delta
 		var mins = int(total_duration) / 60
 		var secs = int(total_duration) % 60
-		time_label.text = "%02d:%02d" % [mins, secs]
+		time_label.text = "%02d.%02d" % [mins, secs]
 
 func _input(event):
 	if is_waiting_for_space and event.is_action_pressed("continue_tutorial"): 
@@ -191,7 +191,7 @@ func run_tutorial_sequence():
 		await get_tree().process_frame
 		
 	await get_tree().create_timer(1.0).timeout
-	await show_tutorial_step("Awesome! You got a new item.\nUse Arrow Keys (Up/Down/Left/Right) to select items in your inventory.")
+	await show_tutorial_step("Awesome! You got a new item.\nUse Arrow Keys to select items in your inventory.")
 	
 	await show_tutorial_step("You are now ready to face the real horde.\nGood luck, defender!")
 	

@@ -111,7 +111,7 @@ func _process(delta):
 	total_duration += delta
 	var mins = int(total_duration) / 60
 	var secs = int(total_duration) % 60
-	time_label.text = "%02d:%02d" % [mins, secs]
+	time_label.text = "%02d.%02d" % [mins, secs]
 	if not is_midnight_mode:
 		phase_timer += delta
 		if phase_timer >= phase_duration:
