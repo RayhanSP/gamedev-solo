@@ -284,6 +284,9 @@ func consume_current_item(item_name: String):
 		update_inventory_ui() 
 
 func _on_zombie_passed(body):
+	# GEMBOK 1: Kalau udah game over, zombi yang nyusul masuk dicuekin aja!
+	if is_game_over: return 
+	
 	if body.has_method("take_damage"):
 		if "is_boss" in body and body.is_boss == true:
 			print(">> GAME OVER INSTAN! BOS MASUK!")
@@ -319,7 +322,10 @@ func activate_warning_symbol():
 # --- REVISI: GAME OVER IRIS ANIMATION ---
 # ==========================================
 func trigger_game_over():
+	# GEMBOK 2: Cegah fungsi tereksekusi dua kali!
+	if is_game_over: return 
 	is_game_over = true
+	
 	if bgm_player:
 		bgm_player.stop()
 	
