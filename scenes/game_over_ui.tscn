@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://c03n45erp2j0q"]
 
 [ext_resource type="Script" uid="uid://bvqiateatsfns" path="res://scripts/game_over_ui.gd" id="1_y6ord"]
-[ext_resource type="Shader" uid="uid://dlgudsyuafqf6" path="res://shaders/game_over_ui.gdshader" id="2_lk38d"]
 [ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="3_lk38d"]
 [ext_resource type="AudioStream" uid="uid://bjqsdmlsik3ug" path="res://assets/musics/freesound_community-videogame-death-sound-43894.mp3" id="4_nbgkd"]
 [ext_resource type="AudioStream" uid="uid://dfxsfhwfafqx7" path="res://assets/musics/creatorshome-digital-click-357350.mp3" id="5_cotc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nbgkd"]
-shader = ExtResource("2_lk38d")
-shader_parameter/blur_amount = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk38d"]
 bg_color = Color(0.84, 0.67200005, 0, 1)
@@ -68,6 +65,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1183102567]
 anchors_preset = 15
