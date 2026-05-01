@@ -19,7 +19,7 @@ func _on_play_pressed():
 
 func _on_tutorial_pressed():
 	if sfx_click: sfx_click.play()
-	print(">> Masuk Tutorial (Dummy)")
+	TransitionManager.change_scene("res://scenes/tutorial.tscn")
 
 func _on_quit_pressed():
 	if sfx_click: 

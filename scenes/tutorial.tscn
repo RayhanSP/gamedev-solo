@@ -1,0 +1,558 @@
+[gd_scene format=3 uid="uid://dkmv54dscjupp"]
+
+[ext_resource type="Script" uid="uid://bkd2ofbqi8qff" path="res://scripts/tutorial.gd" id="1_mjrbb"]
+[ext_resource type="PackedScene" uid="uid://ci3ycmj402dn8" path="res://scenes/zombie.tscn" id="2_ni4f6"]
+[ext_resource type="PackedScene" uid="uid://cxxs7pcsc4ei4" path="res://scenes/item_ban.tscn" id="17_kjg0t"]
+[ext_resource type="PackedScene" uid="uid://blfe2lt2lq7co" path="res://scenes/item_battery.tscn" id="18_y1aja"]
+[ext_resource type="PackedScene" uid="uid://ctv2v3hwntkhj" path="res://scenes/item_busi.tscn" id="19_36bce"]
+[ext_resource type="PackedScene" uid="uid://b7ojs4mc60y5j" path="res://scenes/item_metal_gear.tscn" id="20_f6epg"]
+[ext_resource type="Texture2D" uid="uid://bkg2rxlycgatn" path="res://assets/sprites/usedTires.png" id="21_q36il"]
+[ext_resource type="Texture2D" uid="uid://diia1l4uymvpt" path="res://assets/sprites/metalGear.png" id="22_y1uum"]
+[ext_resource type="Texture2D" uid="uid://barwwrpd0oak3" path="res://assets/sprites/carBattery.png" id="23_d42bh"]
+[ext_resource type="Script" uid="uid://dym880caj4vyv" path="res://scripts/time_manager.gd" id="24_y1w2e"]
+[ext_resource type="Texture2D" uid="uid://63d2rvpihu5i" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/1.png" id="25_7kbet"]
+[ext_resource type="Texture2D" uid="uid://byfbdlvbhpvsa" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/2.png" id="26_yvunf"]
+[ext_resource type="Texture2D" uid="uid://5j762164a1pf" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/3.png" id="27_dskhb"]
+[ext_resource type="Texture2D" uid="uid://cdhb0xc3ltnyd" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/1.png" id="28_ffokf"]
+[ext_resource type="Texture2D" uid="uid://b2sjvyy5hnnyx" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/2.png" id="29_1r1w0"]
+[ext_resource type="Texture2D" uid="uid://cqvcxc1kasvwh" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/1. NEW CLOUDS/3.png" id="30_nd7mk"]
+[ext_resource type="Texture2D" uid="uid://dtniftqrripqt" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/1.png" id="31_ekcgd"]
+[ext_resource type="Texture2D" uid="uid://dsyfrgyyhkhiv" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/2. NEW CLOUDS/2.png" id="32_wxtpk"]
+[ext_resource type="AudioStream" uid="uid://dfxsfhwfafqx7" path="res://assets/musics/creatorshome-digital-click-357350.mp3" id="33_7kfc1"]
+[ext_resource type="Texture2D" uid="uid://bfxglc767uavn" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/1.png" id="33_ytnna"]
+[ext_resource type="Texture2D" uid="uid://b0b7lye4c1743" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/2.png" id="34_7mu23"]
+[ext_resource type="Texture2D" uid="uid://cucald44p422d" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/3.png" id="35_v2br2"]
+[ext_resource type="Texture2D" uid="uid://lfgwv6k1d2xq" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/4.png" id="36_we7ue"]
+[ext_resource type="Texture2D" uid="uid://7bbarwmvuft5" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/5.png" id="37_duxqw"]
+[ext_resource type="Texture2D" uid="uid://cyy3gt7nr7nns" path="res://assets/craftpix-net-995711-free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/6.png" id="38_42bn4"]
+[ext_resource type="Texture2D" uid="uid://bb62c42rb6tiv" path="res://assets/background/house_day.png" id="39_qpnmn"]
+[ext_resource type="Texture2D" uid="uid://y4arpffl8mom" path="res://assets/background/house_evening.png" id="40_rdy4h"]
+[ext_resource type="Texture2D" uid="uid://cca6gnyfnuobm" path="res://assets/background/house_night.png" id="41_o4iao"]
+[ext_resource type="Texture2D" uid="uid://c3hdhg2mnmhrt" path="res://assets/background/house_midnight.png" id="42_l3m4u"]
+[ext_resource type="PackedScene" uid="uid://bj1wbjyihw8y8" path="res://scenes/player.tscn" id="43_1432u"]
+[ext_resource type="Script" uid="uid://dx3r5wa5sm0l8" path="res://scripts/player.gd" id="44_ff3tv"]
+[ext_resource type="Texture2D" uid="uid://hx423fubc8sl" path="res://assets/sprites/aimLineDotV2.png" id="45_xjg77"]
+[ext_resource type="PackedScene" uid="uid://cxt0ibblim5iq" path="res://scenes/vending_machine.tscn" id="46_50ekj"]
+[ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="47_qba53"]
+[ext_resource type="Texture2D" uid="uid://cburkuog7t6cu" path="res://assets/sprites/warningSymbol.png" id="48_3k4u7"]
+[ext_resource type="Texture2D" uid="uid://v0du5vjyexk5" path="res://assets/sprites/itemGrid.png" id="49_ps4h7"]
+[ext_resource type="Texture2D" uid="uid://8g4uu2xyfb7e" path="res://assets/sprites/sparkPlug.png" id="50_hje7h"]
+[ext_resource type="Texture2D" uid="uid://cur10fs7ibhaf" path="res://assets/sprites/itemSelector.png" id="51_pm6ai"]
+[ext_resource type="AudioStream" uid="uid://co2nqtxrvbw3c" path="res://assets/musics/blackbox-black-box-retro-1short-form-bgm-486334.mp3" id="52_wq3ap"]
+[ext_resource type="AudioStream" uid="uid://dvr3ufknnc1w6" path="res://assets/musics/lesiakower-error-mistake-sound-effect-incorrect-answer-437420.mp3" id="53_5iih5"]
+[ext_resource type="AudioStream" uid="uid://dyquc7wm2sphf" path="res://assets/musics/freesound_crunchpixstudio-item-select-1-384928.mp3" id="54_5hcmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
+size = Vector2(29.550388, 17.552002)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2f3dj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cjbq"]
+bg_color = Color(0.84, 0.67200005, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chjal"]
+content_margin_top = 4.0
+bg_color = Color(0.19, 0.15200001, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjqg0"]
+bg_color = Color(0.84, 0.7644, 0.46199998, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vchkt"]
+
+[node name="Main" type="Node2D" unique_id=159988853]
+script = ExtResource("1_mjrbb")
+zombie_scene = ExtResource("2_ni4f6")
+all_ammo_scenes = Array[PackedScene]([ExtResource("20_f6epg"), ExtResource("17_kjg0t"), ExtResource("19_36bce"), ExtResource("18_y1aja")])
+tex_ban = ExtResource("21_q36il")
+tex_metal_gear = ExtResource("22_y1uum")
+tex_battery = ExtResource("23_d42bh")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=822555748]
+
+[node name="TimeManager" type="Node" parent="." unique_id=975729073]
+script = ExtResource("24_y1w2e")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2146964310]
+
+[node name="LayerDay" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1710153474]
+z_index = -10
+
+[node name="BgSiang" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=198315687]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("25_7kbet")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=1843004683]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("26_yvunf")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerDay" unique_id=945745339]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("27_dskhb")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="LayerEvening" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1936488536]
+z_index = -10
+
+[node name="BgSore" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=1804722912]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("28_ffokf")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=1704539959]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("29_1r1w0")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerEvening" unique_id=2142560607]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("30_nd7mk")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="LayerNight" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1283088048]
+z_index = -10
+
+[node name="BgMalam" type="Sprite2D" parent="ParallaxBackground/LayerNight" unique_id=101186641]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("31_ekcgd")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerNight" unique_id=1779624861]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("32_wxtpk")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="LayerMidnight" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2042865073]
+z_index = -10
+
+[node name="BgTengahMalam" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1133851681]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("33_ytnna")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="Bulan" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1997252922]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("34_7mu23")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepanBulan" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1121901542]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("35_v2br2")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1222012055]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("36_we7ue")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanBelakang2" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=292649417]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("37_duxqw")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="AwanDepan" type="Sprite2D" parent="ParallaxBackground/LayerMidnight" unique_id=1116775835]
+scale = Vector2(1.111, 1.111)
+texture = ExtResource("38_42bn4")
+centered = false
+offset = Vector2(0, -60)
+
+[node name="HouseLayers" type="Node2D" parent="." unique_id=1618022668]
+
+[node name="HouseDay" type="Sprite2D" parent="HouseLayers" unique_id=300407247]
+texture = ExtResource("39_qpnmn")
+centered = false
+
+[node name="HouseEvening" type="Sprite2D" parent="HouseLayers" unique_id=571446800]
+texture = ExtResource("40_rdy4h")
+centered = false
+
+[node name="HouseNight" type="Sprite2D" parent="HouseLayers" unique_id=568493092]
+texture = ExtResource("41_o4iao")
+centered = false
+
+[node name="HouseMidnight" type="Sprite2D" parent="HouseLayers" unique_id=165153308]
+texture = ExtResource("42_l3m4u")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1037466701]
+position = Vector2(320.415, 325.095)
+scale = Vector2(6.45, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=83386468]
+position = Vector2(-12.544964, -6.119995)
+scale = Vector2(5, 4.9999976)
+shape = SubResource("RectangleShape2D_sgp6g")
+
+[node name="Player" parent="." unique_id=1612350967 instance=ExtResource("43_1432u")]
+position = Vector2(118, 129)
+scale = Vector2(1.25, 1.25)
+script = ExtResource("44_ff3tv")
+dot_texture = ExtResource("45_xjg77")
+
+[node name="VendingMachine" parent="." unique_id=1202862248 instance=ExtResource("46_50ekj")]
+z_index = 1
+position = Vector2(57, 118)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1221279923]
+position = Vector2(671, 249)
+
+[node name="HouseDefenseArea" type="Area2D" parent="." unique_id=1599464840]
+position = Vector2(-100.935, 212.295)
+scale = Vector2(5.195, 5.195)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseDefenseArea" unique_id=241871131]
+position = Vector2(-5.774784, 0)
+scale = Vector2(1.185, 1.185)
+shape = SubResource("RectangleShape2D_2f3dj")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2011802465]
+
+[node name="ZombieBar" type="TextureRect" parent="HUD" unique_id=1876792641]
+offset_left = 40.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 25.0
+
+[node name="CountLabel" type="Label" parent="HUD/ZombieBar" unique_id=2005645823]
+layout_mode = 0
+offset_left = 23.05
+offset_top = 9.0
+offset_right = 63.05
+offset_bottom = 32.000015
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 9
+text = "0 / 10"
+
+[node name="WarningSymbol" type="TextureRect" parent="HUD" unique_id=539151269]
+modulate = Color(1, 1, 1, 0)
+offset_left = 120.0
+offset_top = 10.0
+offset_right = 152.0
+offset_bottom = 42.0
+texture = ExtResource("48_3k4u7")
+
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=335585213]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = 19.0
+offset_right = 21.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 9
+text = "00:00"
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=1017984830]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.340027
+offset_top = 15.0
+offset_right = -20.340027
+offset_bottom = 41.000027
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("47_qba53")
+text = "0"
+
+[node name="BtnPause" type="Button" parent="HUD" unique_id=399731679]
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 33.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cjbq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_chjal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cjqg0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vchkt")
+text = "II"
+
+[node name="InventoryUI" type="Control" parent="HUD" unique_id=1605713698]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.625
+offset_top = 30.83
+offset_right = 60.625
+offset_bottom = 98.965
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(60.625, 34.067)
+
+[node name="TopSlot" type="TextureRect" parent="HUD/InventoryUI" unique_id=1047445339]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_right = 16.0
+offset_bottom = 32.0
+grow_horizontal = 2
+texture = ExtResource("49_ps4h7")
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/TopSlot" unique_id=920862625]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("50_hje7h")
+
+[node name="BottomSlots" type="HBoxContainer" parent="HUD/InventoryUI" unique_id=500488778]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -40.0
+offset_right = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -8
+
+[node name="Slot1" type="TextureRect" parent="HUD/InventoryUI/BottomSlots" unique_id=183051875]
+layout_mode = 2
+texture = ExtResource("49_ps4h7")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/BottomSlots/Slot1" unique_id=897536806]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.999996
+offset_top = -12.000004
+offset_right = 11.999996
+offset_bottom = 12.000004
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot2" type="TextureRect" parent="HUD/InventoryUI/BottomSlots" unique_id=936612408]
+layout_mode = 2
+texture = ExtResource("49_ps4h7")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/BottomSlots/Slot2" unique_id=671172020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.999996
+offset_top = -12.000004
+offset_right = 11.999996
+offset_bottom = 12.000004
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot3" type="TextureRect" parent="HUD/InventoryUI/BottomSlots" unique_id=1004671909]
+layout_mode = 2
+texture = ExtResource("49_ps4h7")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="HUD/InventoryUI/BottomSlots/Slot3" unique_id=570542950]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.999996
+offset_top = -12.000004
+offset_right = 11.999996
+offset_bottom = 12.000004
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Selector" type="TextureRect" parent="HUD/InventoryUI" unique_id=1125567397]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("51_pm6ai")
+
+[node name="PullReadyLabel" type="Label" parent="HUD/InventoryUI" unique_id=706377692]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = 39.166695
+offset_right = 49.5
+offset_bottom = 62.166695
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8392157, 0.67058825, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 10
+text = "PULL READY!"
+
+[node name="WarningLabel" type="Label" parent="HUD" unique_id=1975564354]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.4392157, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 8
+text = "tes123"
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=496411169]
+process_mode = 3
+stream = ExtResource("52_wq3ap")
+volume_db = -5.0
+autoplay = true
+
+[node name="SfxError" type="AudioStreamPlayer" parent="." unique_id=2132945164]
+stream = ExtResource("53_5iih5")
+
+[node name="SfxSelect" type="AudioStreamPlayer" parent="." unique_id=358229991]
+stream = ExtResource("54_5hcmp")
+
+[node name="TutorialOverlay" type="CanvasLayer" parent="." unique_id=330916430]
+
+[node name="Dimmer" type="ColorRect" parent="TutorialOverlay" unique_id=786733843]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="DialogBox" type="Panel" parent="TutorialOverlay" unique_id=2050578310]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PromptText" type="Label" parent="TutorialOverlay/DialogBox" unique_id=111902503]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -28.0
+offset_right = -4.0
+offset_bottom = -4.5
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8392157, 0.67058825, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 9
+text = "press space to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialText" type="Label" parent="TutorialOverlay/DialogBox" unique_id=279250994]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.75
+offset_right = 212.75
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("47_qba53")
+theme_override_font_sizes/font_size = 9
+text = "placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SfxNext" type="AudioStreamPlayer" parent="TutorialOverlay" unique_id=1921778625]
+stream = ExtResource("33_7kfc1")
