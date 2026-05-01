@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4r685m8d2f2e" path="res://assets/sprites/mainCharIdle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://4b6df3kkjp6n" path="res://assets/sprites/mainCharIdle2.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://df04ibi62we0x" path="res://assets/sprites/mainCharThrow.png" id="3_dqkch"]
+[ext_resource type="AudioStream" uid="uid://bix6fp40tb6iq" path="res://assets/musics/phoenix_connection_brazil-rapid-wind-sound-effect-2-108400.mp3" id="4_dqkch"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlg0r"]
 animations = [{
@@ -34,3 +35,6 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_qlg0r")
 animation = &"throw"
 autoplay = "idle"
+
+[node name="SfxThrow" type="AudioStreamPlayer2D" parent="." unique_id=1746320104]
+stream = ExtResource("4_dqkch")

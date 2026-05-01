@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://grqvh7l6foos" path="res://scripts/item_metal_gear.gd" id="1_brufh"]
 [ext_resource type="Texture2D" uid="uid://diia1l4uymvpt" path="res://assets/sprites/metalGear.png" id="2_41pm2"]
+[ext_resource type="AudioStream" uid="uid://bnxgxa1iws7oa" path="res://assets/musics/freesound_community-metal-pipe-swing-1-47741.mp3" id="3_41pm2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvhth"]
 radius = 8.0
@@ -29,3 +30,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_f2yp8")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=752596188]
+
+[node name="SfxFlying" type="AudioStreamPlayer2D" parent="." unique_id=647276570]
+stream = ExtResource("3_41pm2")
+autoplay = true

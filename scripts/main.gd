@@ -37,6 +37,17 @@ extends Node2D
 var warning_base_y: float
 var warning_tween: Tween
 
+# === AUDIO NODES & DUCKING LOGIC ===
+@onready var sfx_error = $SfxError
+@onready var sfx_select = $SfxSelect
+@onready var bgm_player = $BGMPlayer
+
+var base_bgm_vol = -5.0 # Volume Normal BGM
+var muffled_bgm_vol = -15.0 # Volume BGM saat redup
+var is_game_paused = false
+var is_gacha_muffle = false
+# ===================================
+
 @export var all_ammo_scenes: Array[PackedScene] 
 var ammo_dict = {}
 
@@ -67,7 +78,7 @@ var is_warning_active: bool = false
 
 var is_midnight_mode: bool = false
 var night_cycles_passed: int = 0
-var target_night_for_boss: int = 2 # Boss akan muncul di malam ke-2
+var target_night_for_boss: int = 2 
 
 func _ready():
 	randomize()
@@ -81,6 +92,9 @@ func _ready():
 		if scene:
 			var scene_name = scene.resource_path.get_file().get_basename()
 			ammo_dict[scene_name] = scene
+			
+	if bgm_player:
+		bgm_player.volume_db = base_bgm_vol
 	
 	count_label.text = "0 / 10"
 	score_label.text = "0"
@@ -104,13 +118,11 @@ func _ready():
 func _process(delta):
 	if is_game_over: return
 
-	# 1. Timer Angka (Label) SELALU BERJALAN walau lagi Midnight Mode
 	total_duration += delta
 	var mins = int(total_duration) / 60
 	var secs = int(total_duration) % 60
 	time_label.text = "%02d:%02d" % [mins, secs]
 	
-	# 2. Phase Waktu (Pergantian Langit/Siklus) TERHENTI saat Midnight Mode
 	if not is_midnight_mode:
 		phase_timer += delta
 		if phase_timer >= phase_duration:
@@ -127,15 +139,46 @@ func _process(delta):
 		pull_ready_label.visible = (vending_machine.available_charges > 0)
 
 # ==========================================
-# --- MIDNIGHT MODE LOGIC (REVISI TRIGGER) ---
+# --- FUNGSI AUDIO DUCKING (REVISI BARU) ---
 # ==========================================
+func update_bgm_volume():
+	if not bgm_player: return
+	
+	if is_game_paused or is_gacha_muffle:
+		bgm_player.volume_db = muffled_bgm_vol
+	else:
+		bgm_player.volume_db = base_bgm_vol
+
+func set_gacha_muffle(status: bool):
+	is_gacha_muffle = status
+	update_bgm_volume()
+
+func _on_pause_pressed():
+	if is_game_over: return 
+	get_tree().paused = true 
+	
+	# Muffle BGM saat Pause
+	is_game_paused = true
+	update_bgm_volume()
+	
+	if pause_scene:
+		var ui = pause_scene.instantiate()
+		add_child(ui)
+		
+		# Deteksi otomatis kapan menu pause ditutup biar BGM balik normal!
+		ui.tree_exited.connect(_on_pause_menu_closed)
+
+func _on_pause_menu_closed():
+	is_game_paused = false
+	update_bgm_volume()
+# ==========================================
+
 func advance_phase():
 	wave_level += 1
 	
 	if time_manager and time_manager.has_method("transition_to_next"):
 		time_manager.transition_to_next()
 		
-		# Cek apakah pergantian waktu sekarang adalah malam ("night")
 		if time_manager.current_time == "night":
 			night_cycles_passed += 1
 			if night_cycles_passed >= target_night_for_boss:
@@ -143,9 +186,9 @@ func advance_phase():
 
 func trigger_midnight_mode():
 	is_midnight_mode = true
+	show_floating_text("MIDNIGHT MODE!")
 	current_spawn_delay += 5.0
 	
-	# Paksa scene jadi Midnight
 	if time_manager and time_manager.has_method("force_midnight"):
 		time_manager.force_midnight()
 	
@@ -157,36 +200,32 @@ func trigger_midnight_mode():
 
 func on_boss_died():
 	is_midnight_mode = false
+	show_floating_text("BOSS DEFEATED!")
 	
-	# Target malam berikutnya diacak
 	night_cycles_passed = 0
 	target_night_for_boss = randi_range(2, 4)
 	
 	if time_manager and time_manager.has_method("end_midnight"):
 		time_manager.end_midnight()
 		
-	# --- FIX SPAWNER MACET ---
-	# Reset timer dan paksa hitung ulang delay normal detik itu juga!
 	spawn_timer = 0.0
 	_kalkulasi_delay_spawn()
 
-# ==========================================
-# --- FUNGSI INVENTORY & SELECTOR ---
-# ==========================================
 func _input(event):
 	if is_game_over or get_tree().paused: return
 	if event.is_action_pressed("pause_game"):
 		_on_pause_pressed()
 		
+	var moved = false
 	if event.is_action_pressed("ui_up"):
 		is_top_grid_selected = true
-		update_inventory_ui()
+		moved = true
 	elif event.is_action_pressed("ui_down"):
 		for i in range(3):
 			if inventory[i] != "":
 				is_top_grid_selected = false
 				selected_bottom_index = i
-				update_inventory_ui()
+				moved = true
 				break
 	elif event.is_action_pressed("ui_left"):
 		if not is_top_grid_selected:
@@ -195,7 +234,7 @@ func _input(event):
 				current -= 1
 				if inventory[current] != "":
 					selected_bottom_index = current
-					update_inventory_ui()
+					moved = true
 					break
 	elif event.is_action_pressed("ui_right"):
 		if not is_top_grid_selected:
@@ -204,8 +243,12 @@ func _input(event):
 				current += 1
 				if inventory[current] != "":
 					selected_bottom_index = current
-					update_inventory_ui()
+					moved = true
 					break
+					
+	if moved:
+		if sfx_select: sfx_select.play()
+		update_inventory_ui()
 
 func get_texture_for(item_name: String) -> Texture2D:
 	match item_name:
@@ -254,6 +297,9 @@ func is_inventory_full() -> bool:
 	return not ("" in inventory)
 
 func show_floating_text(msg: String):
+	if msg == "INVENTORY FULL!" and sfx_error:
+		sfx_error.play() 
+		
 	if not warning_label: return
 	
 	if warning_tween and warning_tween.is_valid():
@@ -288,19 +334,9 @@ func consume_current_item(item_name: String):
 		is_top_grid_selected = true 
 		update_inventory_ui() 
 
-# ==========================================
-# --- FUNGSI CORE LAINNYA ---
-# ==========================================
-func _on_pause_pressed():
-	if is_game_over: return 
-	get_tree().paused = true 
-	if pause_scene:
-		var ui = pause_scene.instantiate()
-		add_child(ui)
-
 func _on_zombie_passed(body):
 	if body.has_method("take_damage"):
-		if body.get("is_boss") == true:
+		if "is_boss" in body and body.is_boss == true:
 			print(">> GAME OVER INSTAN! BOS MASUK!")
 			body.queue_free() 
 			trigger_game_over()
@@ -337,18 +373,14 @@ func activate_warning_symbol():
 func trigger_game_over():
 	is_game_over = true
 	
-	# REVISI: Munculin Scene DULU, baru pause tree-nya
 	if game_over_scene:
 		var ui = game_over_scene.instantiate()
 		add_child(ui)
-		
-		# Set node UI ini ke mode ALWAYS biar tetep gerak walau game pause
 		ui.process_mode = Node.PROCESS_MODE_ALWAYS 
 		
 		if ui.has_method("set_stats"):
 			ui.set_stats(int(total_duration), score, gacha_count, items_used)
 			
-	# Jeda sedikit banget (satu frame) baru beneran pause fisik game
 	await get_tree().process_frame
 	get_tree().paused = true 
 

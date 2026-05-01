@@ -51,6 +51,9 @@
 [ext_resource type="Texture2D" uid="uid://hx423fubc8sl" path="res://assets/sprites/aimLineDotV2.png" id="44_j2jfr"]
 [ext_resource type="Texture2D" uid="uid://v0du5vjyexk5" path="res://assets/sprites/itemGrid.png" id="44_vchkt"]
 [ext_resource type="Texture2D" uid="uid://8g4uu2xyfb7e" path="res://assets/sprites/sparkPlug.png" id="45_txyw0"]
+[ext_resource type="AudioStream" uid="uid://co2nqtxrvbw3c" path="res://assets/musics/blackbox-black-box-retro-1short-form-bgm-486334.mp3" id="52_0loja"]
+[ext_resource type="AudioStream" uid="uid://dvr3ufknnc1w6" path="res://assets/musics/lesiakower-error-mistake-sound-effect-incorrect-answer-437420.mp3" id="53_ids8r"]
+[ext_resource type="AudioStream" uid="uid://dyquc7wm2sphf" path="res://assets/musics/freesound_crunchpixstudio-item-select-1-384928.mp3" id="54_dnhof"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(29.550388, 17.552002)
@@ -493,3 +496,15 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_fonts/font = ExtResource("41_2cjbq")
 theme_override_font_sizes/font_size = 8
 text = "tes123"
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=496411169]
+process_mode = 3
+stream = ExtResource("52_0loja")
+volume_db = -5.0
+autoplay = true
+
+[node name="SfxError" type="AudioStreamPlayer" parent="." unique_id=2132945164]
+stream = ExtResource("53_ids8r")
+
+[node name="SfxSelect" type="AudioStreamPlayer" parent="." unique_id=358229991]
+stream = ExtResource("54_dnhof")

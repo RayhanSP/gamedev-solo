@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://03sd4tm7m76c" path="res://assets/vending_machine_sprites/vendingMachineSpinned2.png" id="11_s5cyj"]
 [ext_resource type="Texture2D" uid="uid://e4jbvd11c25l" path="res://assets/vending_machine_sprites/vendingMachineReady.png" id="11_t0d2s"]
 [ext_resource type="Texture2D" uid="uid://cem2oaky1sm12" path="res://assets/vending_machine_sprites/vendingMachineSpinned3.png" id="12_bqfkx"]
+[ext_resource type="AudioStream" uid="uid://duf0d1af7odc0" path="res://assets/musics/slimeyfox-arcade-electronix-481262.mp3" id="16_6dx7k"]
+[ext_resource type="AudioStream" uid="uid://cok3ss7air644" path="res://assets/musics/floraphonic-90s-game-ui-6-185099.mp3" id="17_bf3ui"]
+[ext_resource type="AudioStream" uid="uid://bmlqopj47caur" path="res://assets/musics/mubeenstudio-money-counting-machine-sfx-406495.mp3" id="18_udont"]
+[ext_resource type="AudioStream" uid="uid://cc1w13gfjolo" path="res://assets/musics/koiroylers-get-coin-351945.mp3" id="19_s8262"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_77dry"]
 animations = [{
@@ -97,3 +101,16 @@ sprite_frames = SubResource("SpriteFrames_77dry")
 animation = &"text_final"
 
 [node name="Timer" type="Timer" parent="." unique_id=1193820832]
+
+[node name="SfxBgmLoop" type="AudioStreamPlayer2D" parent="." unique_id=885949714]
+stream = ExtResource("16_6dx7k")
+volume_db = 4.0
+
+[node name="SfxReady" type="AudioStreamPlayer2D" parent="." unique_id=1194134084]
+stream = ExtResource("17_bf3ui")
+
+[node name="SfxRolling" type="AudioStreamPlayer2D" parent="." unique_id=1318271099]
+stream = ExtResource("18_udont")
+
+[node name="SfxDrop" type="AudioStreamPlayer2D" parent="." unique_id=1802279142]
+stream = ExtResource("19_s8262")

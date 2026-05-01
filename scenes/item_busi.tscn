@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://8g4uu2xyfb7e" path="res://assets/sprites/sparkPlug.png" id="1_6v2g1"]
 [ext_resource type="Script" uid="uid://crvyjvy7ymbq7" path="res://scripts/item_busi.gd" id="1_a7ygb"]
+[ext_resource type="AudioStream" uid="uid://dimwmh120e85p" path="res://assets/musics/freesound_community-glass-shatter-3-100155.mp3" id="2_ayii3"]
+[ext_resource type="AudioStream" uid="uid://cqxf0sdh4np4a" path="res://assets/musics/freesound_community-glass-shatter-1-46837.mp3" id="3_53ye0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7ygb"]
 radius = 4.0
@@ -13,6 +15,7 @@ collision_layer = 4
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_a7ygb")
+shatter_sounds = Array[AudioStream]([ExtResource("2_ayii3"), ExtResource("3_53ye0")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=669926535]
 texture = ExtResource("1_6v2g1")
@@ -41,5 +44,7 @@ initial_velocity_min = 150.0
 initial_velocity_max = 200.0
 scale_amount_min = 1.5
 scale_amount_max = 2.5
+
+[node name="SfxSparkBreak" type="AudioStreamPlayer2D" parent="." unique_id=1302994233]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

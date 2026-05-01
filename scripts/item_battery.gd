@@ -3,6 +3,7 @@ extends RigidBody2D
 @onready var shock_zone = $ShockZone
 @onready var shock_timer = $ShockTimer
 @onready var particles = $ShockParticles 
+@onready var sfx_drop = $SfxDrop # AUDIO NODE
 
 var is_active = false
 var has_hit_zombie = false
@@ -14,7 +15,6 @@ var slow_factor = 0.3
 
 func _ready():
 	z_index = 1
-	# Pastikan monitoring ON dari awal biar bisa deteksi zombie pas melayang
 	shock_zone.monitoring = true
 	
 	if particles:
@@ -25,7 +25,6 @@ func _ready():
 	shock_timer.timeout.connect(_on_shock_tick)
 
 func _on_direct_hit(body):
-	# Deteksi hantaman pertama (sebelum aki mendarat/aktif area DoT)
 	if not is_active and not has_hit_zombie:
 		if body.has_method("take_damage"):
 			print(">> Aki menghantam Zombie! (Direct Hit)")
@@ -37,6 +36,8 @@ func _on_direct_hit(body):
 func _on_body_entered(body):
 	if is_active: return
 	if body.name == "Ground":
+		# Bunyi pas jatuh ke aspal
+		if sfx_drop: sfx_drop.play()
 		activate_battery()
 
 func activate_battery():

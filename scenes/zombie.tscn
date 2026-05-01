@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://ci3ycmj402dn8"]
 
 [ext_resource type="Script" uid="uid://dox1btjuvynxv" path="res://scripts/zombie.gd" id="1_4gx57"]
+[ext_resource type="AudioStream" uid="uid://kk7jbqce2qp7" path="res://assets/musics/freesound_community-zombie-choking-44937.mp3" id="2_3fthk"]
 [ext_resource type="Texture2D" uid="uid://dbrur8emo2mjv" path="res://assets/sprites/zombieHurt.png" id="2_ycv6i"]
+[ext_resource type="AudioStream" uid="uid://dlgotrk66a42l" path="res://assets/musics/dragon-studio-zombie-sound-357975.mp3" id="3_aetfh"]
 [ext_resource type="Texture2D" uid="uid://bh7b0hwsnol7t" path="res://assets/sprites/zombieMarch1.png" id="3_pjjxt"]
 [ext_resource type="Texture2D" uid="uid://uh72sn3skt0d" path="res://assets/sprites/zombieMarch2.png" id="4_7pfmu"]
+[ext_resource type="AudioStream" uid="uid://dvn050c6v64gj" path="res://assets/musics/freesound_community-zombie-moan-44932.mp3" id="4_jjlcg"]
+[ext_resource type="AudioStream" uid="uid://bxpdr0lgykwnr" path="res://assets/musics/freesound_community-zombie-6851 (1).mp3" id="8_iblsu"]
+[ext_resource type="AudioStream" uid="uid://vsumwc3hbq0m" path="res://assets/musics/universfield-sword-blade-slicing-flesh-352708.mp3" id="9_jjlcg"]
+[ext_resource type="AudioStream" uid="uid://dy6dscoynhg5b" path="res://assets/musics/rescopicsound-elemental-magic-spell-impact-outgoing-228342.mp3" id="10_iblsu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3fthk"]
 animations = [{
@@ -36,6 +42,7 @@ scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_4gx57")
 speed = 60.0
+growl_sounds = Array[AudioStream]([ExtResource("2_3fthk"), ExtResource("3_aetfh"), ExtResource("4_jjlcg")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756556107]
 scale = Vector2(0.8, 0.8)
@@ -46,3 +53,14 @@ autoplay = "walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1999441093]
 position = Vector2(1.25, 0.75)
 shape = SubResource("RectangleShape2D_4gx57")
+
+[node name="SfxGrowl" type="AudioStreamPlayer2D" parent="." unique_id=765700308]
+
+[node name="SfxHurt" type="AudioStreamPlayer2D" parent="." unique_id=2075025835]
+stream = ExtResource("8_iblsu")
+
+[node name="SfxMetalHit" type="AudioStreamPlayer2D" parent="." unique_id=1696666193]
+stream = ExtResource("9_jjlcg")
+
+[node name="SfxBatteryZap" type="AudioStreamPlayer2D" parent="." unique_id=1639120005]
+stream = ExtResource("10_iblsu")
