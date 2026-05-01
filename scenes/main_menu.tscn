@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://c3hdhg2mnmhrt" path="res://assets/background/house_midnight.png" id="18_eku7s"]
 [ext_resource type="PackedScene" uid="uid://bj1wbjyihw8y8" path="res://scenes/player.tscn" id="19_c6nra"]
 [ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="22_1dfpl"]
+[ext_resource type="AudioStream" uid="uid://cj6kl8qcfx1vo" path="res://assets/musics/hitslab-chiptune-video-game-games-music-457939.mp3" id="23_qywvv"]
+[ext_resource type="AudioStream" uid="uid://dfxsfhwfafqx7" path="res://assets/musics/creatorshome-digital-click-357350.mp3" id="24_3wgol"]
 [ext_resource type="PackedScene" uid="uid://cxt0ibblim5iq" path="res://scenes/vending_machine.tscn" id="25_b4jiv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qywvv"]
@@ -30,6 +32,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 anti_aliasing = false
@@ -42,6 +48,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 anti_aliasing = false
 
@@ -52,6 +62,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 anti_aliasing = false
@@ -262,3 +276,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1acrt")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vr8o3")
 text = "quit"
 icon_alignment = 1
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1384703887]
+stream = ExtResource("23_qywvv")
+volume_db = -10.0
+autoplay = true
+
+[node name="SfxClick" type="AudioStreamPlayer" parent="." unique_id=347726751]
+stream = ExtResource("24_3wgol")

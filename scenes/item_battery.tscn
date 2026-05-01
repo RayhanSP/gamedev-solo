@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://barwwrpd0oak3" path="res://assets/sprites/carBattery.png" id="2_b33ot"]
 [ext_resource type="Texture2D" uid="uid://dopxp6wtpqlx2" path="res://assets/sprites/batteryLightning.png" id="3_b33ot"]
 [ext_resource type="AudioStream" uid="uid://c2qaywxceqv8j" path="res://assets/musics/universfield-thud-291047.mp3" id="4_7olb4"]
+[ext_resource type="AudioStream" uid="uid://dy6dscoynhg5b" path="res://assets/musics/rescopicsound-elemental-magic-spell-impact-outgoing-228342.mp3" id="5_rvwva"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7olb4"]
 friction = 0.8
@@ -68,3 +69,7 @@ anim_offset_max = 1.0
 
 [node name="SfxDrop" type="AudioStreamPlayer2D" parent="." unique_id=289499131]
 stream = ExtResource("4_7olb4")
+
+[node name="SfxBatteryZap" type="AudioStreamPlayer2D" parent="." unique_id=1024796900]
+stream = ExtResource("5_rvwva")
+volume_db = 2.0

@@ -3,7 +3,11 @@ extends RigidBody2D
 @onready var shock_zone = $ShockZone
 @onready var shock_timer = $ShockTimer
 @onready var particles = $ShockParticles 
-@onready var sfx_drop = $SfxDrop # AUDIO NODE
+
+# === AUDIO NODES ===
+@onready var sfx_drop = $SfxDrop 
+@onready var sfx_battery_zap = $SfxBatteryZap
+# ===================
 
 var is_active = false
 var has_hit_zombie = false
@@ -36,7 +40,6 @@ func _on_direct_hit(body):
 func _on_body_entered(body):
 	if is_active: return
 	if body.name == "Ground":
-		# Bunyi pas jatuh ke aspal
 		if sfx_drop: sfx_drop.play()
 		activate_battery()
 
@@ -53,6 +56,12 @@ func activate_battery():
 
 func _on_shock_tick():
 	var victims = shock_zone.get_overlapping_bodies()
+	
+	# FIX GENDANG TELINGA: Putar suara SEKALI saja tiap pulse jika ada zombi yang kena!
+	if victims.size() > 0 and sfx_battery_zap:
+		sfx_battery_zap.pitch_scale = randf_range(0.9, 1.1) # Biar gak kaku bunyinya
+		sfx_battery_zap.play()
+		
 	for body in victims:
 		if body.has_method("take_damage") and body.has_method("apply_shock_effect"):
 			body.take_damage(dot_damage)

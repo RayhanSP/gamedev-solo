@@ -42,8 +42,8 @@ var warning_tween: Tween
 @onready var sfx_select = $SfxSelect
 @onready var bgm_player = $BGMPlayer
 
-var base_bgm_vol = -5.0 # Volume Normal BGM
-var muffled_bgm_vol = -15.0 # Volume BGM saat redup
+var base_bgm_vol = -5.0 
+var muffled_bgm_vol = -15.0 
 var is_game_paused = false
 var is_gacha_muffle = false
 # ===================================
@@ -138,9 +138,6 @@ func _process(delta):
 	if pull_ready_label and vending_machine:
 		pull_ready_label.visible = (vending_machine.available_charges > 0)
 
-# ==========================================
-# --- FUNGSI AUDIO DUCKING (REVISI BARU) ---
-# ==========================================
 func update_bgm_volume():
 	if not bgm_player: return
 	
@@ -157,21 +154,17 @@ func _on_pause_pressed():
 	if is_game_over: return 
 	get_tree().paused = true 
 	
-	# Muffle BGM saat Pause
 	is_game_paused = true
 	update_bgm_volume()
 	
 	if pause_scene:
 		var ui = pause_scene.instantiate()
 		add_child(ui)
-		
-		# Deteksi otomatis kapan menu pause ditutup biar BGM balik normal!
 		ui.tree_exited.connect(_on_pause_menu_closed)
 
 func _on_pause_menu_closed():
 	is_game_paused = false
 	update_bgm_volume()
-# ==========================================
 
 func advance_phase():
 	wave_level += 1
@@ -372,6 +365,10 @@ func activate_warning_symbol():
 
 func trigger_game_over():
 	is_game_over = true
+	
+	# FIX BUG 2: MATIKAN BGM SAAT GAME OVER
+	if bgm_player:
+		bgm_player.stop()
 	
 	if game_over_scene:
 		var ui = game_over_scene.instantiate()

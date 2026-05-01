@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://dvn050c6v64gj" path="res://assets/musics/freesound_community-zombie-moan-44932.mp3" id="4_jjlcg"]
 [ext_resource type="AudioStream" uid="uid://bxpdr0lgykwnr" path="res://assets/musics/freesound_community-zombie-6851 (1).mp3" id="8_iblsu"]
 [ext_resource type="AudioStream" uid="uid://vsumwc3hbq0m" path="res://assets/musics/universfield-sword-blade-slicing-flesh-352708.mp3" id="9_jjlcg"]
-[ext_resource type="AudioStream" uid="uid://dy6dscoynhg5b" path="res://assets/musics/rescopicsound-elemental-magic-spell-impact-outgoing-228342.mp3" id="10_iblsu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3fthk"]
 animations = [{
@@ -61,6 +60,3 @@ stream = ExtResource("8_iblsu")
 
 [node name="SfxMetalHit" type="AudioStreamPlayer2D" parent="." unique_id=1696666193]
 stream = ExtResource("9_jjlcg")
-
-[node name="SfxBatteryZap" type="AudioStreamPlayer2D" parent="." unique_id=1639120005]
-stream = ExtResource("10_iblsu")

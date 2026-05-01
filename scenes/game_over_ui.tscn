@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bvqiateatsfns" path="res://scripts/game_over_ui.gd" id="1_y6ord"]
 [ext_resource type="Shader" uid="uid://dlgudsyuafqf6" path="res://shaders/game_over_ui.gdshader" id="2_lk38d"]
 [ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="3_lk38d"]
+[ext_resource type="AudioStream" uid="uid://bjqsdmlsik3ug" path="res://assets/musics/freesound_community-videogame-death-sound-43894.mp3" id="4_nbgkd"]
+[ext_resource type="AudioStream" uid="uid://dfxsfhwfafqx7" path="res://assets/musics/creatorshome-digital-click-357350.mp3" id="5_cotc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nbgkd"]
 shader = ExtResource("2_lk38d")
@@ -15,6 +17,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 anti_aliasing = false
@@ -27,6 +33,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 anti_aliasing = false
 
@@ -37,6 +47,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 anti_aliasing = false
@@ -114,3 +128,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cotc0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nbgkd")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lk38d")
 text = "back to menu"
+
+[node name="SfxGameOver" type="AudioStreamPlayer" parent="." unique_id=898211776]
+stream = ExtResource("4_nbgkd")
+
+[node name="SfxClick" type="AudioStreamPlayer" parent="." unique_id=904899637]
+process_mode = 3
+stream = ExtResource("5_cotc0")

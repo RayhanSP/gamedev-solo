@@ -19,7 +19,6 @@ var is_dead: bool = false
 @onready var sfx_growl = $SfxGrowl
 @onready var sfx_hurt = $SfxHurt
 @onready var sfx_metal_hit = $SfxMetalHit
-@onready var sfx_battery_zap = $SfxBatteryZap
 
 func _ready():
 	current_health = max_health
@@ -116,9 +115,6 @@ func die():
 	
 func apply_shock_effect(slow_multiplier: float, duration: float):
 	if is_dead: return
-	
-	# MAININ SFX KESETRUM AKI
-	if sfx_battery_zap: sfx_battery_zap.play()
 	
 	anim.modulate = Color(0.3, 0.3, 0.3) 
 	speed = original_speed * slow_multiplier

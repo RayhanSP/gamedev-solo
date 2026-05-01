@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://b2duwfu0ptscl" path="res://assets/sprites/miniBossWalk1.png" id="5_yfea8"]
 [ext_resource type="Texture2D" uid="uid://svwlw4es0xpj" path="res://assets/sprites/miniBossWalk3.png" id="6_rvgg1"]
 [ext_resource type="Texture2D" uid="uid://f7laf28i845o" path="res://assets/sprites/miniBossWindUp.png" id="7_fb20r"]
+[ext_resource type="AudioStream" uid="uid://rs8hmyhotr81" path="res://assets/musics/dragon-studio-zombie-groan-sfx-450451.mp3" id="8_yfea8"]
+[ext_resource type="AudioStream" uid="uid://b7erja1nr4h4s" path="res://assets/musics/freesound_community-anime_charge_03-96230.mp3" id="9_rvgg1"]
+[ext_resource type="AudioStream" uid="uid://bichu6rb1bxy5" path="res://assets/musics/freesound_crunchpixstudio-boss-attack-charge-384924.mp3" id="10_fb20r"]
+[ext_resource type="AudioStream" uid="uid://d3flq38qngrsh" path="res://assets/musics/freesound_community-cartoon-spin-7120.mp3" id="11_68fho"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_68fho"]
 animations = [{
@@ -64,3 +68,15 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1367784016]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2lnyf")
+
+[node name="SfxGrowl" type="AudioStreamPlayer2D" parent="." unique_id=2045634213]
+stream = ExtResource("8_yfea8")
+
+[node name="SfxWindUp" type="AudioStreamPlayer2D" parent="." unique_id=1215166160]
+stream = ExtResource("9_rvgg1")
+
+[node name="SfxCharge" type="AudioStreamPlayer2D" parent="." unique_id=763319893]
+stream = ExtResource("10_fb20r")
+
+[node name="SfxStunned" type="AudioStreamPlayer2D" parent="." unique_id=1389186709]
+stream = ExtResource("11_68fho")

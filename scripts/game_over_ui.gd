@@ -4,9 +4,15 @@ extends CanvasLayer
 @onready var btn_replay = $CenterContainer/VBoxContainer/BtnReplay
 @onready var btn_menu = $CenterContainer/VBoxContainer/BtnMenu
 
+@onready var sfx_game_over = $SfxGameOver 
+@onready var sfx_click = $SfxClick 
+
 func _ready():
 	btn_replay.pressed.connect(_on_replay_pressed)
 	btn_menu.pressed.connect(_on_menu_pressed)
+	
+	if sfx_game_over:
+		sfx_game_over.play()
 
 func set_stats(durasi, skor, gacha, item_dict):
 	var teks = "Survived: %d secs\n" % durasi
@@ -22,10 +28,11 @@ func set_stats(durasi, skor, gacha, item_dict):
 	stats_label.text = teks
 
 func _on_replay_pressed():
-	# Ganti reload_current_scene dengan transisi ke main.tscn
-	# Ini akan me-restart game secara bersih dengan efek pixel wipe
+	if sfx_click: sfx_click.play()
+	get_tree().paused = false
 	TransitionManager.change_scene("res://scenes/main.tscn")
 
 func _on_menu_pressed():
-	# Kembali ke main menu dengan transisi
+	if sfx_click: sfx_click.play()
+	get_tree().paused = false
 	TransitionManager.change_scene("res://scenes/main_menu.tscn")

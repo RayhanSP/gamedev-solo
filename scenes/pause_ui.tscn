@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ckqskvl7cm5nc" path="res://scripts/pause_ui.gd" id="1_vcehk"]
 [ext_resource type="Shader" uid="uid://dlgudsyuafqf6" path="res://shaders/game_over_ui.gdshader" id="1_ypbrs"]
 [ext_resource type="FontFile" uid="uid://bb0bd0cd2vup1" path="res://assets/fonts/daydream_3/Daydream DEMO.otf" id="2_vcehk"]
+[ext_resource type="AudioStream" uid="uid://dfxsfhwfafqx7" path="res://assets/musics/creatorshome-digital-click-357350.mp3" id="4_3egln"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3egln"]
 shader = ExtResource("1_ypbrs")
@@ -15,6 +16,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 anti_aliasing = false
@@ -27,6 +32,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 anti_aliasing = false
 
@@ -37,6 +46,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 anti_aliasing = false
@@ -100,3 +113,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_utk7g")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ynu8c")
 text = "back to menu"
 icon_alignment = 1
+
+[node name="SfxClick" type="AudioStreamPlayer" parent="." unique_id=492552236]
+process_mode = 3
+stream = ExtResource("4_3egln")

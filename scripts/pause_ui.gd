@@ -3,22 +3,28 @@ extends CanvasLayer
 @onready var btn_resume = $CenterContainer/VBoxContainer/BtnResume
 @onready var btn_menu = $CenterContainer/VBoxContainer/BtnMenu
 
+@onready var sfx_click = $SfxClick
+
 func _ready():
 	btn_resume.pressed.connect(_on_resume)
 	btn_menu.pressed.connect(_on_menu)
 
 func _on_resume():
+	if sfx_click: sfx_click.play()
+	
+	# Sembunyikan UI dan lepas pause detik itu juga!
+	visible = false
 	get_tree().paused = false
+	
+	if sfx_click: await sfx_click.finished
 	queue_free()
 
 func _on_menu():
-	# Pastikan game di-unpause sebelum pindah agar main menu tidak freeze
+	if sfx_click: sfx_click.play()
 	get_tree().paused = false 
 	TransitionManager.change_scene("res://scenes/main_menu.tscn")
 
 func _input(event):
-	# Jika pencet P lagi saat menu pause aktif, langsung resume
 	if event.is_action_pressed("pause_game"):
-		# Mencegah input ini menembus ke node lain
 		get_viewport().set_input_as_handled()
 		_on_resume()
